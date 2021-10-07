@@ -1,10 +1,11 @@
 import type { NextPage } from 'next'
-import styles from '../styles/Home.module.sass'
+import Chatsidebar from "../components/chatsidebar";
+import Chatoverlay from "../components/chatoverlay";
 
 const Home: NextPage = () => {
   return (
     <div>
-      Hello, World!
+      <Chatoverlay avatar={""} name={"Giang"}/>
     </div>
   )
 }
