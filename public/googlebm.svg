@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Channels/GoogleBM</title>
+    <g id="Channels/GoogleBM" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <circle id="Background" stroke="#3B78E7" fill="#FFFFFF" cx="12" cy="12" r="11.5"></circle>
+        <g id="business-messages-icon" transform="translate(4.000000, 4.000000)">
+            <polygon id="Path" points="0 0 16 0 16 16 0 16"></polygon>
+            <path d="M10.6666667,8.66666667 C11.0333333,8.66666667 11.3333333,8.36666667 11.3333333,8 L11.3333333,2 C11.3333333,1.63333333 11.0333333,1.33333333 10.6666667,1.33333333 L2,1.33333333 C1.63333333,1.33333333 1.33333333,1.63333333 1.33333333,2 L1.33333333,11.3333333 L4,8.66666667 L10.6666667,8.66666667 Z M10,2.66666667 L10,7.33333333 L2.66666667,7.33333333 L2.66666667,2.66666667 L10,2.66666667 Z M14,4 L12.6666667,4 L12.6666667,10 L4,10 L4,11.3333333 C4,11.7 4.3,12 4.66666667,12 L12,12 L14.6666667,14.6666667 L14.6666667,4.66666667 C14.6666667,4.3 14.3666667,4 14,4 Z" id="Shape" fill="#3B78E7" fill-rule="nonzero"></path>
+        </g>
+    </g>
+</svg>

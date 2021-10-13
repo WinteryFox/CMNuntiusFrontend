@@ -5,7 +5,7 @@ import Chatoverlay from "../components/chatoverlay";
 const Home: NextPage = () => {
   return (
     <div>
-      <Chatoverlay avatar={""} name={"Giang"}/>
+      <Chatoverlay channel={""} name={"Giang"} message={"I need help!!!!!!!"} time={"13 oct. 2020"}/>
     </div>
   )
 }

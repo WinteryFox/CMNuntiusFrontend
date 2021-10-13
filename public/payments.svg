@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Channels/Payments</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Apple-TV" transform="translate(-779.000000, -469.000000)">
+            <g id="Channels/Payments" transform="translate(779.000000, 469.000000)">
+                <circle id="Background" fill="#344055" cx="12" cy="12" r="12"></circle>
+                <path d="M20,11 L20,15.5 C20,16.6045695 19.1045695,17.5 18,17.5 L6,17.5 C4.8954305,17.5 4,16.6045695 4,15.5 L4,11 L20,11 Z M11.5,14.5 L6.5,14.5 C6.22385763,14.5 6,14.7238576 6,15 C6,15.2761424 6.22385763,15.5 6.5,15.5 L6.5,15.5 L11.5,15.5 C11.7761424,15.5 12,15.2761424 12,15 C12,14.7238576 11.7761424,14.5 11.5,14.5 L11.5,14.5 Z M11.5,12.5 L6.5,12.5 C6.22385763,12.5 6,12.7238576 6,13 C6,13.2761424 6.22385763,13.5 6.5,13.5 L6.5,13.5 L11.5,13.5 C11.7761424,13.5 12,13.2761424 12,13 C12,12.7238576 11.7761424,12.5 11.5,12.5 L11.5,12.5 Z M18,6.5 C19.1045695,6.5 20,7.3954305 20,8.5 L20,9 L4,9 L4,8.5 C4,7.3954305 4.8954305,6.5 6,6.5 L18,6.5 Z" id="Combined-Shape" fill="#FFFFFF"></path>
+            </g>
+        </g>
+    </g>
+</svg>

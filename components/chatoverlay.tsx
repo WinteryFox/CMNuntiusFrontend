@@ -3,21 +3,24 @@ import Image from "next/image";
 
 interface Props {
     name: string,
-    avatar: string,
-    latestMessage: string,
+    channel: string,
+    message: string,
+    time: string,
 }
 
 function Chatoverlay(props: Props) {
     return (
 
-            <div className={"flex h-full w-1/5"}>
-                <div className={"inline-flex items-center"}>
-                    <Image className={"w-auto"} src={"/cm.svg"} alt={"Logo"} width={50} height={50}/>
-                         <span className="badge small bottom-right" aria-hidden="true">
-                            <span className="cm-channel cm-channel-whatsapp-simple" aria-hidden="false"></span>
-                         </span>
+            <div className={"flex h-full w-1/5 p-2 border-b-2"}>
+                <div className={"inline-flex"}>
+                    <Image className={"w-auto"} src={"/twitter.svg"} alt={"Logo"} width={50} height={50}/>
 
-                    <h3>{props.name}</h3>
+                    <div className={"block"}>
+                        <p className={"text-lg font-bold pl-3.5 text-black"}>{props.name}</p>
+                        <p className={"pl-3.5"}>{props.message}</p>
+
+                    </div>
+                    <time dateTime={props.time} className={"py-0.5"}>{props.time}</time>
                 </div>
             </div>
 

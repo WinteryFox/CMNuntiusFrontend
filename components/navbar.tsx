@@ -2,6 +2,7 @@ import Image from 'next/image'
 
 export default function Navbar() {
     return (
+
         <header className={"border-b-2"}>
             <nav className={"sticky top-0 z-40 bg-white flex pl-10 py-5"}>
                 <a className={"overflow-hidden inline-flex items-center"} href={"/"}>
