@@ -1,6 +1,5 @@
 import React from 'react';
 import Image from "next/image";
-
 interface Props {
     name: string,
     channel: string,
@@ -8,10 +7,10 @@ interface Props {
     time: string,
 }
 
-function Chatoverlay(props: Props) {
+function Conversations(props: Props) {
     return (
 
-            <div className={"flex h-full w-1/5 p-2 border-b-2"}>
+            <div className={"flex p-2 border-b-2"}>
                 <div className={"inline-flex"}>
                     <Image className={"w-auto"} src={props.channel} alt={"Logo"} width={50} height={50}/>
                     <div className={"block"}>
@@ -25,4 +24,4 @@ function Chatoverlay(props: Props) {
     );
 }
 
-export default Chatoverlay;
+export default Conversations;
