@@ -6,10 +6,10 @@ import Chatwindow from "./chatwindow";
 export default function Layout({children}: HTMLElement) {
     return (
         <>
-            <Navbar></Navbar>
+            <Navbar/>
             <div style={{scrollBehavior: 'smooth'}} className={"flex height-body"}>
-                <Chatsidebar></Chatsidebar>
-                <Chatwindow></Chatwindow>
+                <Chatsidebar/>
+                <Chatwindow/>
             </div>
 
             <main>{children}</main>

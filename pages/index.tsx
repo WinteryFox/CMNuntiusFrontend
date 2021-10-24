@@ -7,8 +7,8 @@ import React from "react";
 const Home: NextPage = () => {
   return (
     <div>
-      <Script src={"https://www.cm.com/en-gb/app/aurora/js/webcomponents-loader.js"}></Script>
-      <Script src={"https://www.cm.com/en-gb/app/aurora/js/aurora-components-legacy.js"}></Script>
+      <Script src={"https://www.cm.com/en-gb/app/aurora/js/webcomponents-loader.js"}/>
+      <Script src={"https://www.cm.com/en-gb/app/aurora/js/aurora-components-legacy.js"}/>
     </div>
   )
 }

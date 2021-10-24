@@ -1,6 +1,6 @@
 import React from 'react';
 import Conversations from "./conversations";
-//Todo: mock content into dynamic conversation in list
+//Todo: mock content into dynamic conversation in list and custom minimal scrollbar
 interface Props {
 
 }
@@ -10,22 +10,15 @@ function Chatsidebar(props: Props) {
         <>
             <div className={""}>
                 <div style={{ width: '425px', height: '94vh' }} className={"border rounded-lg p-6"}>
-                    <div className={"flex-col"}>
-                        <div className={"flex h-8"}>
-                            <div className={" mx-2"}>
-                                <h3>Chats</h3>
-                            </div>
+                        <div className={"flex h-8 mx-2"}>
+                            <h3>Chats</h3>
                         </div>
-                        <div className={"p-2"}>
-                            <div className="form-group">
-                                <div className="form-row">
-                                    <div className="form-input-special ">
-                                        <input type="text" className="form-control " placeholder="Start searching… "/>
-                                        <span className="input-left icon">
-                                            <span aria-hidden="true" className="cm-icon cm-icon-search"></span>
-                                        </span>
-                                    </div>
-                                </div>
+                        <div className={"p-2 form-group form-row"}>
+                            <div className={"form-input-special"}>
+                            <input type="text" className="form-control " placeholder="Start searching… "/>
+                                <span className="input-left icon">
+                                    <span aria-hidden="true" className="cm-icon cm-icon-search"/>
+                                </span>
                             </div>
                         </div>
                         <div style={{ height: '80vh', scrollbarWidth:'none' }} className={"overflow-auto pr-1"}>
@@ -39,12 +32,11 @@ function Chatsidebar(props: Props) {
                             <Conversations channel={"/telegram.svg"} name={"Martijnnz"} content={"cryptoo 📈 stooooooooooooooooooooonks"} time={"1 d"}/>
                             <Conversations channel={"/apple-business.svg"} name={"Tim Corey"} content={"Ik ben geswitched naar apple :p"} time={"3 d"}/>
                             <Conversations channel={"/wechat.svg"} name={"Ash FOR the win"} content={"china is cool [+20 social credit score]"} time={"3 d"}/>
-                            <Conversations channel={"/twitter.svg"} name={"Ashwin Fontys"} content={"sheeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeesh"} time={"1 w"}/>
-                            <Conversations channel={"/twitter.svg"} name={"Ashwin Fontys"} content={"Van hier"} time={"1 w"}/>
+                            <Conversations channel={"/twitter.svg"} name={"Ashwin Fontys"} content={"sheeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeesh"} time={"1 w"}/>
+                            <Conversations channel={"/twitter.svg"} name={"Ashwin Fontysssssssssssssssssssssssssssssssss"} content={"Van hier"} time={"1 w"}/>
                             <Conversations channel={"/twitter.svg"} name={"Ashwin Fontys"} content={"tot"} time={"3 w"}/>
                             <Conversations channel={"/twitter.svg"} name={"Ashwin Fontys"} content={"Hier is niet te zien op 1080p"} time={"3 w"}/>
                         </div>
-                    </div>
                 </div>
             </div>
         </>
