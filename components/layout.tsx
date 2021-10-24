@@ -1,5 +1,4 @@
 import Navbar from "./navbar";
-import React from "react";
 import Chatsidebar from "./chatsidebar";
 import Chatwindow from "./chatwindow";
 import React, {ReactNode} from "react";
