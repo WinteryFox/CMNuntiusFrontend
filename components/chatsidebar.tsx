@@ -1,5 +1,6 @@
 import React from 'react';
 import Conversation from "./Conversation";
+import {Channel} from "../src/Channel";
 
 // TODO: mock content into dynamic conversation in list and custom minimal scrollbar
 export default function Chatsidebar() {
@@ -17,27 +18,25 @@ export default function Chatsidebar() {
                 </div>
             </div>
             <div className={"flex flex-col"}>
-                <Conversation channel={"/viber.svg"} name={"Giang"} content={"I need help 🤬 REEEEEEEEEEE!!!!!!!!"}
+                <Conversation channel={Channel.VIBER} name={"Giang"} content={"I need help 🤬 REEEEEEEEEEE!!!!!!!!"}
                                time={"23 s"}/>
-                <Conversation channel={"/twitter.svg"} name={"Ashwin Fontys"}
+                <Conversation channel={Channel.TWITTER} name={"Ashwin Fontys"}
                                content={"Hey, there is something illegal in my chat gang group"} time={"2 m"}/>
-                <Conversation channel={"/telegram.svg"} name={"Lucky Luc"} content={"*kreunt*"} time={"32 m"}/>
-                <Conversation channel={"/cm.svg"} name={"Maikel"} content={"Vsauce Maikel here 😁😁😁"}
-                               time={"4 h"}/>
-                <Conversation channel={"/line.svg"} name={"Giang"} content={"ありがとう！ I'm a fucking weeb"} time={"3 h"}/>
-                <Conversation channel={"/telegram.svg"} name={"Martijnnz"}
+                <Conversation channel={Channel.TELEGRAM} name={"Lucky Luc"} content={"*kreunt*"} time={"32 m"}/>
+                <Conversation channel={Channel.LINE} name={"Giang"} content={"ありがとう！ I'm a fucking weeb"} time={"3 h"}/>
+                <Conversation channel={Channel.TELEGRAM} name={"Martijnnz"}
                                content={"cryptoo 📈 stooooooooooooooooooooonks"} time={"1 d"}/>
-                <Conversation channel={"/apple-business.svg"} name={"Tim Corey"}
+                <Conversation channel={Channel.APPLE_BUSINESS_CHAT} name={"Tim Corey"}
                                content={"Ik ben geswitched naar apple :p"} time={"3 d"}/>
-                <Conversation channel={"/wechat.svg"} name={"Ash FOR the win"}
+                <Conversation channel={Channel.WECHAT} name={"Ash FOR the win"}
                                content={"china is cool [+20 social credit score]"} time={"3 d"}/>
-                <Conversation channel={"/twitter.svg"} name={"Ashweeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeein Fontys"}
+                <Conversation channel={Channel.TWITTER} name={"Ashweeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeein Fontys"}
                                content={"sheeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeesh"}
                                time={"1 w"}/>
-                <Conversation channel={"/twitter.svg"} name={"Ashwin Fontysssssssssssssssssssssssssssssssss"}
+                <Conversation channel={Channel.SMS} name={"Ashwin Fontysssssssssssssssssssssssssssssssss"}
                                content={"Van hier"} time={"1 w"}/>
-                <Conversation channel={"/twitter.svg"} name={"Ashwin Fontys"} content={"tot"} time={"3 w"}/>
-                <Conversation channel={"/twitter.svg"} name={"Ashwin Fontys"}
+                <Conversation channel={Channel.APPLE_BUSINESS_CHAT} name={"Ashwin Fontys"} content={"tot"} time={"3 w"}/>
+                <Conversation channel={Channel.WHATSAPP_BUSINESS} name={"Ashwin Fontys"}
                                content={"Hier is niet te zien op 1080p"} time={"3 w"}/>
             </div>
         </div>
