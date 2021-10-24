@@ -1,13 +1,9 @@
 import React from 'react';
 
-//Todo: properties,text templates and reformat code for unique user chat window
-interface Props{
-
-}
-
-function Chatwindow(props: Props) {
+// TODO: properties,text templates and reformat code for unique user chat window
+function Chatwindow() {
     return (
-        <cm-communicator>
+        <cm-communicator className={"w-full"}>
             <div className="header">
                 <cm-avatar data-image="[IMAGE-URL]">
                 <span className="badge small bottom-right" aria-hidden="true">
@@ -67,7 +63,8 @@ function Chatwindow(props: Props) {
                         </div>
                     </div>
                     <cm-conversation-divider>
-                        <span className="cm-icon cm-icon-time-open bg-warning-color cl-background-color" aria-hidden="true"/>
+                        <span className="cm-icon cm-icon-time-open bg-warning-color cl-background-color"
+                              aria-hidden="true"/>
                         <span className="title"> Yesterday</span>
                     </cm-conversation-divider>
                     <cm-conversation-divider>
