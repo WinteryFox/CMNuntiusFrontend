@@ -1,6 +1,6 @@
 import React from 'react';
 import Conversations from "./conversations";
-
+//Todo: mock content into dynamic conversation in list
 interface Props {
 
 }

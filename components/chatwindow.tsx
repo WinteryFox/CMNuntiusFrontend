@@ -1,6 +1,6 @@
 import React from 'react';
 
-//Todo: properties,text templates and reformat code
+//Todo: properties,text templates and reformat code for unique user chat window
 interface Props{
 
 }
@@ -134,7 +134,7 @@ function Chatwindow(props: Props) {
         </cm-communicator>
 
     );
-};
+}
 
 
 export default Chatwindow;
