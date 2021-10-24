@@ -6,7 +6,7 @@ Nuntius is a test platform for the messaging API provided by [CM.com](https://cm
 being developed by students at [Fontys College of Informatics](https://fontys.nl).
 
 ## TODO
-1. Expand README.md
+1. Expand frontend README.md
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
