@@ -47,7 +47,7 @@ export default function Conversations(props: {
     }
 
     return (
-        <div className={"flex cursor-pointer select-none rounded-3xl p-3 hover:shadow-lg duration-200"}>
+        <div className={"flex cursor-pointer select-none rounded-3xl p-3 hover:shadow duration-200"}>
             <Image src={icon} alt={"Logo"} width={50} height={50}/>
 
             <div className={"flex flex-column ml-2 w-full overflow-hidden"}>

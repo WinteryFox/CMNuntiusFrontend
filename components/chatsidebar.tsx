@@ -5,7 +5,7 @@ import {Channel} from "../src/Channel";
 // TODO: mock content into dynamic conversation in list and custom minimal scrollbar
 export default function Chatsidebar() {
     return (
-        <div className={"flex flex-col border-r p-6 max-w-sm"}>
+        <div className={"flex flex-col border-r p-3 max-w-sm"}>
             <div className={"flex h-8 mx-2"}>
                 <h3>Chats</h3>
             </div>
@@ -17,13 +17,13 @@ export default function Chatsidebar() {
                                 </span>
                 </div>
             </div>
-            <div className={"flex flex-col"}>
+            <div className={"flex flex-col overflow-auto max-h-full pb-2 px-1"}>
                 <Conversation channel={Channel.VIBER} name={"Giang"} content={"I need help 🤬 REEEEEEEEEEE!!!!!!!!"}
                                time={"23 s"}/>
                 <Conversation channel={Channel.TWITTER} name={"Ashwin Fontys"}
                                content={"Hey, there is something illegal in my chat gang group"} time={"2 m"}/>
                 <Conversation channel={Channel.TELEGRAM} name={"Lucky Luc"} content={"*kreunt*"} time={"32 m"}/>
-                <Conversation channel={Channel.LINE} name={"Giang"} content={"ありがとう！ I'm a fucking weeb"} time={"3 h"}/>
+                <Conversation channel={Channel.LINE} name={"Giang"} content={"ありがとう！"} time={"3 h"}/>
                 <Conversation channel={Channel.TELEGRAM} name={"Martijnnz"}
                                content={"cryptoo 📈 stooooooooooooooooooooonks"} time={"1 d"}/>
                 <Conversation channel={Channel.APPLE_BUSINESS_CHAT} name={"Tim Corey"}
