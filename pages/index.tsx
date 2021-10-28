@@ -13,7 +13,7 @@ export default function Home() {
 
         source.onerror = (event: any) => console.error(event)
         source.onopen = () => console.log("Now listening to events...")
-        source.onmessage = (e: Event) => setHistory(() => [...history, JSON.parse(e.data).payload])
+        source.onmessage = (e) => setHistory(() => [...history, JSON.parse(e.data).payload])
 
         return () => source.close()
     })
