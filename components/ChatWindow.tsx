@@ -1,7 +1,10 @@
 import React from 'react';
+import Message from "../src/Message";
 
 // TODO: properties,text templates and reformat code for unique user chat window
-export default function ChatWindow() {
+export default function ChatWindow(props: {
+    history: Array<Message>
+}) {
     return (
         <cm-communicator>
             <div className="header">
@@ -50,7 +53,7 @@ export default function ChatWindow() {
             </div>
             <div className="body">
                 <cm-conversation>
-                    <div className="row">
+                    {/*<div className="row me">
                         <cm-conversation-bubble>
                             Help me
                             <div className="time">11:47</div>
@@ -60,53 +63,18 @@ export default function ChatWindow() {
                         </div>
                     </div>
                     <cm-conversation-divider>
-                        <span className="cm-icon cm-icon-time-open bg-warning-color cl-background-color"
-                              aria-hidden="true"/>
                         <span className="title"> Yesterday</span>
-                    </cm-conversation-divider>
-                    <cm-conversation-divider>
-                        <span className="title"> Yesterday</span>
-                    </cm-conversation-divider>
-                    <div className="row me">
-                        <cm-conversation-bubble>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit. Vestibulum sed nibh commodo mauris volutpat aliquet. Pellentesque
-                            hendrerit sapien dolor, eu malesuada arcu interdum et. Phasellus tincidunt
-                            dapibus enim, ut sollicitudin augue consequat id. Fusce pharetra mi sed tortor
-                            condimentum dictum. Nam ullamcorper nisi quam, non viverra ipsum dictum a. Cras
-                            ligula ligula, hendrerit interdum porttitor ac, malesuada id lorem. Vivamus
-                            facilisis ornare suscipit. Donec eu felis bibendum, blandit mauris eget,
-                            porttitor massa. Pellentesque bibendum fermentum iaculis. Nunc vitae blandit
-                            dolor. Phasellus in ipsum ac massa volutpat rhoncus fermentum nec felis.
-                            Curabitur scelerisque nunc quis turpis blandit, vehicula efficitur nibh
-                            pellentesque. Nam odio neque, dictum sed purus ut, pulvinar bibendum purus. Nam
-                            vitae eleifend ex, a lobortis tellus.
-                            <div className="time">11:47</div>
-                        </cm-conversation-bubble>
-                        <div>
-                            <span className="cm-icon cm-icon-user-fill" aria-hidden="true"/>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <cm-conversation-bubble>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit. Vestibulum sed nibh commodo mauris volutpat aliquet. Pellentesque
-                            hendrerit sapien dolor, eu malesuada arcu interdum et. Phasellus tincidunt
-                            dapibus enim, ut sollicitudin augue consequat id. Fusce pharetra mi sed tortor
-                            condimentum dictum. Nam ullamcorper nisi quam, non viverra ipsum dictum a. Cras
-                            ligula ligula, hendrerit interdum porttitor ac, malesuada id lorem. Vivamus
-                            facilisis ornare suscipit. Donec eu felis bibendum, blandit mauris eget,
-                            porttitor massa. Pellentesque bibendum fermentum iaculis. Nunc vitae blandit
-                            dolor. Phasellus in ipsum ac massa volutpat rhoncus fermentum nec felis.
-                            Curabitur scelerisque nunc quis turpis blandit, vehicula efficitur nibh
-                            pellentesque. Nam odio neque, dictum sed purus ut, pulvinar bibendum purus. Nam
-                            vitae eleifend ex, a lobortis tellus.
-                            <div className="time">11:47</div>
-                        </cm-conversation-bubble>
-                        <div>
-                            <span className="cm-icon cm-icon-user-fill" aria-hidden="true"/>
-                        </div>
-                    </div>
+                    </cm-conversation-divider>*/}
+                    {props.history.map((message) => (
+                        <div key={message.reference} className="row">
+                            <cm-conversation-bubble>
+                                {message.message.text}
+                                <div className="time">{message.timeUtc}</div>
+                            </cm-conversation-bubble>
+                            <div>
+                                <span className="cm-icon cm-icon-user-fill" aria-hidden="true"/>
+                            </div>
+                        </div>))}
                 </cm-conversation>
             </div>
         </cm-communicator>

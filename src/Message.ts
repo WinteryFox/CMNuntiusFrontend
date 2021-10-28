@@ -1,9 +1,9 @@
-export default interface Messages {
+export default interface Message {
     reference: string,
     messageContext: string,
     from: From,
     to: To,
-    message: Message,
+    message: Content,
     groupings: Array<string>,
     time: string,
     timeUtc: string,
@@ -19,7 +19,7 @@ interface To {
     number: string
 }
 
-interface Message {
+interface Content {
     text: string,
     media: Media
 }
