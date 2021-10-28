@@ -1,9 +1,9 @@
 import React from 'react';
 
 // TODO: properties,text templates and reformat code for unique user chat window
-function Chatwindow() {
+export default function ChatWindow() {
     return (
-        <cm-communicator className={"w-full"}>
+        <cm-communicator>
             <div className="header">
                 <cm-avatar data-image="[IMAGE-URL]">
                 <span className="badge small bottom-right" aria-hidden="true">
@@ -19,11 +19,8 @@ function Chatwindow() {
                             data-href="data:text/plain;charset=utf-8,this is a textual download"
                             data-download="myfile.txt"
                             data-icon="download"
-                            data-display="Download myfile.txt"
-                        >
-                        </cm-context-menu-option>
+                            data-display="Download myfile.txt"/>
                         <cm-context-menu-line/>
-
                     </cm-context-menu>
                 </span>
             </div>
@@ -113,9 +110,5 @@ function Chatwindow() {
                 </cm-conversation>
             </div>
         </cm-communicator>
-
     );
 }
-
-
-export default Chatwindow;

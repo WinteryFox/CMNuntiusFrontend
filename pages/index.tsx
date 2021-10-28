@@ -1,16 +1,12 @@
-import type {NextPage} from 'next'
-import Script from "next/script";
-import Chatsidebar from "../components/chatsidebar";
 import React from "react";
-import Chatwindow from "../components/chatwindow";
+import ChatSidebar from "../components/ChatSidebar";
+import ChatWindow from "../components/ChatWindow";
 
-const Home: NextPage = () => {
+export default function Home() {
     return (
         <div className={"flex h-full"}>
-            <Chatsidebar/>
-            <Chatwindow/>
+            <ChatSidebar/>
+            <ChatWindow/>
         </div>
     )
 }
-
-export default Home
