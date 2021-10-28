@@ -1,12 +1,12 @@
-import type { NextPage } from 'next'
-import styles from '../styles/Home.module.sass'
+import React from "react";
+import ChatSidebar from "../components/ChatSidebar";
+import ChatWindow from "../components/ChatWindow";
 
-const Home: NextPage = () => {
-  return (
-    <div>
-      Hello, World!
-    </div>
-  )
+export default function Home() {
+    return (
+        <div className={"flex h-full"}>
+            <ChatSidebar/>
+            <ChatWindow/>
+        </div>
+    )
 }
-
-export default Home
