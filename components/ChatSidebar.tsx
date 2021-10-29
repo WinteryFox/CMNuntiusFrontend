@@ -1,11 +1,15 @@
-import React from 'react';
+import React, {MouseEventHandler} from 'react';
 import Conversation from "./Conversation";
-import {Channel} from "../src/Channel";
+import {formatDate, MessageSnapshot} from "../src/Message";
 
 // TODO: mock content into dynamic conversation in list and custom minimal scrollbar
-export default function ChatSidebar() {
+export default function ChatSidebar(props: {
+    conversations: Array<MessageSnapshot>,
+    selected: string,
+    onSelect: (id: string) => void
+}) {
     return (
-        <div className={"flex flex-col border-r p-6 max-w-sm"}>
+        <div className={"flex flex-col border-r px-6 pt-6 w-full max-w-sm bg-gray-100"}>
             <div className={"flex flex-col mb-4"}>
                 <h3 className={"flex h-8"}>Chats</h3>
 
@@ -19,28 +23,15 @@ export default function ChatSidebar() {
                 </div>
             </div>
             <div className={"flex flex-col p-1 overflow-y-auto"}>
-                <Conversation channel={Channel.VIBER} name={"Giang"} content={"I need help 🤬 REEEEEEEEEEE!!!!!!!!"}
-                              time={"23 s"}/>
-                <Conversation channel={Channel.TWITTER} name={"Ashwin Fontys"}
-                              content={"Hey, there is something illegal in my chat gang group"} time={"2 m"}/>
-                <Conversation channel={Channel.TELEGRAM} name={"Lucky Luc"} content={"*kreunt*"} time={"32 m"}/>
-                <Conversation channel={Channel.LINE} name={"Giang"} content={"ありがとう！"} time={"3 h"}/>
-                <Conversation channel={Channel.TELEGRAM} name={"Martijnnz"}
-                              content={"cryptoo 📈 stooooooooooooooooooooonks"} time={"1 d"}/>
-                <Conversation channel={Channel.APPLE_BUSINESS_CHAT} name={"Tim Corey"}
-                              content={"Ik ben geswitched naar apple :p"} time={"3 d"}/>
-                <Conversation channel={Channel.WECHAT} name={"Ash FOR the win"}
-                              content={"china is cool [+20 social credit score]"} time={"3 d"}/>
-                <Conversation channel={Channel.TWITTER}
-                              name={"Ashweeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeein Fontys"}
-                              content={"sheeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeesh"}
-                              time={"1 w"}/>
-                <Conversation channel={Channel.SMS} name={"Ashwin Fontysssssssssssssssssssssssssssssssss"}
-                              content={"Van hier"} time={"1 w"}/>
-                <Conversation channel={Channel.APPLE_BUSINESS_CHAT} name={"Ashwin Fontys"} content={"tot"}
-                              time={"3 w"}/>
-                <Conversation channel={Channel.WHATSAPP_BUSINESS} name={"Ashwin Fontys"}
-                              content={"Hier is niet te zien op 1080p"} time={"3 w"}/>
+                {props.conversations.map((conversation) => (
+                    <div key={conversation.from.number} className={"mb-1"}>
+                        <Conversation channel={conversation.channel}
+                                      from={conversation.from}
+                                      content={conversation.lastMessage} time={formatDate(conversation.date)}
+                                      onSelect={props.onSelect}
+                                      active={props.selected == conversation.from.number}/>
+                    </div>
+                ))}
             </div>
         </div>
     );

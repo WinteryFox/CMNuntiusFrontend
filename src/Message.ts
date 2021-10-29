@@ -1,4 +1,13 @@
-export default interface Message {
+import {Channel} from "./Channel"
+
+export interface MessageSnapshot {
+    from: From,
+    channel: Channel,
+    lastMessage: string,
+    date: Date
+}
+
+export interface Message {
     reference: string,
     messageContext: string,
     from: From,
@@ -10,26 +19,33 @@ export default interface Message {
     channel: string
 }
 
-interface From {
+export interface From {
     number: string,
     name: string
 }
 
-interface To {
+export interface To {
     number: string
 }
 
-interface Content {
+export interface Content {
     text: string,
     media: Media
 }
 
-interface Media {
+export interface Media {
     mediaUri: string,
     contentType: string,
     title: string
 }
 
-interface Custom {
+export interface Custom {
 
+}
+
+export function formatDate(date: Date): string {
+    if (date.getUTCDate() == new Date().getUTCDate())
+        return date.toLocaleTimeString()
+    else
+        return date.toLocaleDateString()
 }
