@@ -39,7 +39,6 @@ export default function Home() {
             )
 
             setConversations(() => map)
-            console.log(conversations)
         }
 
         return () => source.close()
