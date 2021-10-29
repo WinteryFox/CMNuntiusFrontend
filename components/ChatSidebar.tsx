@@ -22,16 +22,20 @@ export default function ChatSidebar(props: {
                     </div>
                 </div>
             </div>
-            <div className={"flex flex-col p-1 overflow-y-auto"}>
-                {props.conversations.map((conversation) => (
-                    <div key={conversation.from.number} className={"mb-1"}>
-                        <Conversation channel={conversation.channel}
-                                      from={conversation.from}
-                                      content={conversation.lastMessage} time={formatDate(conversation.date)}
-                                      onSelect={props.onSelect}
-                                      active={props.selected == conversation.from.number}/>
-                    </div>
-                ))}
+            <div className={"flex flex-col p-1 overflow-y-auto h-full"}>
+                {props.conversations.length == 0 ?
+                    <div className={"flex items-center justify-center h-full"}>
+                        No conversations to show
+                    </div> :
+                    props.conversations.map((conversation) => (
+                        <div key={conversation.from.number} className={"mb-1"}>
+                            <Conversation channel={conversation.channel}
+                                          from={conversation.from}
+                                          content={conversation.lastMessage} time={formatDate(conversation.date)}
+                                          onSelect={props.onSelect}
+                                          active={props.selected == conversation.from.number}/>
+                        </div>
+                    ))}
             </div>
         </div>
     );

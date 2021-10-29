@@ -85,8 +85,8 @@ export default function ChatWindow(props: {
         );
     else
         return (
-            <div>
-                No conversations
+            <div className={"flex items-center justify-center w-full md:text-xl"}>
+                No active conversation
             </div>
         )
 }
