@@ -10,12 +10,8 @@ export default function Home() {
     const [conversations, setConversations] = useState<Map<string, Array<Message>>>(new Map([]))
 
     function determineLatest(messages: Array<Message>): MessageSnapshot {
-        const message = messages.reduce((message1, message2) => {
-            const date1 = new Date(message1.timeUtc)
-            const date2 = new Date(message2.timeUtc)
-
-            return date1 > date2 ? message1 : message2
-        })
+        const message = messages.reduce((message1, message2) =>
+            new Date(message1.timeUtc) > new Date(message2.timeUtc) ? message1 : message2)
 
         return {
             from: message.from,
