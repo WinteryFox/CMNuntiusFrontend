@@ -2,12 +2,13 @@ import React from 'react';
 import Image from "next/image";
 import {Channel} from "../../src/channel"
 import {From} from "../../src/json/message";
+import {formatDate} from "../../src/json/response";
 
 export default function Conversation(props: {
     from: From,
     channel: Channel,
     content: string,
-    time: string,
+    time: Date,
     active: boolean,
     onSelect: (id: string) => void
 }) {
@@ -21,7 +22,7 @@ export default function Conversation(props: {
                     <p className={"text-base font-bold text-nowrap text-truncate"}>
                         {props.from.name ? props.from.name : props.from.number}
                     </p>
-                    <time className={"flex-shrink-0"}>{props.time}</time>
+                    <time dateTime={props.time.toISOString()} className={"flex-shrink-0"}>{formatDate(props.time)}</time>
                 </div>
 
                 <p className={"text-nowrap text-truncate"}>{props.content}</p>
