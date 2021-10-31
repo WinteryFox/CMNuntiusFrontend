@@ -70,7 +70,7 @@ export default function Chat(props: {
                             <div key={message.reference}
                                  className={`flex flex-col mb-2 w-2/5 ${message.sender.number == props.us.number ? "align-self-end" : ""}`}>
                                 <div
-                                    className={`whitespace-pre-wrap break-all bg-white p-5 rounded-3xl text-black ${message.sender.number == props.us.number ? "bg-blue-400 text-white" : ""}`}>
+                                    className={`whitespace-pre-wrap break-words bg-white p-5 rounded-3xl text-black ${message.sender.number == props.us.number ? "bg-blue-400 text-white" : ""}`}>
                                     {message.content.text}
                                 </div>
 
@@ -81,17 +81,24 @@ export default function Chat(props: {
                                                 {message.sender.name ? message.sender.name : message.sender.number}
                                             </div>
                                         </div>
-                                        <div className="time flex flex-shrink-0">
+                                        <time dateTime={message.time.toISOString()} className="time flex flex-shrink-0">
                                             {formatDate(message.time)}
-                                        </div>
+                                        </time>
                                     </div> :
                                     <div className={"flex mt-0.5 items-center justify-end"}>
-                                        <div className={"mr-2"}>
+                                        <time dateTime={message.time.toISOString()} className={"mr-2"}>
                                             {formatDate(message.time)}
-                                        </div>
-                                        <div>
-                                            {message.status /* TODO: Display icons instead */}
-                                        </div>
+                                        </time>
+                                        {message.status == 0 &&
+                                        <i className={"fas fa-spinner animate-spin w-16px"} title={"Accepted"}/>}
+                                        {message.status == 1 &&
+                                        <i className={"fas fa-times text-red-400"} title={"Rejected"}/>}
+                                        {message.status == 2 &&
+                                        <i className={"fas fa-check"} title={"Sent"}/>}
+                                        {message.status == 3 &&
+                                        <i className={"fas fa-times-circle text-red-400"} title={"Failed"}/>}
+                                        {message.status == 4 &&
+                                        <i className={"fas fa-check text-blue-400"} title={"Read"}/>}
                                     </div>
                                 }
                             </div>

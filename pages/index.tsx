@@ -12,14 +12,10 @@ export default function Home() {
     const [active, setActive] = useState<string>("")
     const [conversations, setConversations] = useState<Map<string, Array<Message>>>(new Map([]))
 
-    function determineLatest(messages: Array<Message>): MessageSnapshot {
-        const us = conversations.get(active)![0].recipient.number
-        const message = messages.reduce((message1, message2) => {
-            if (message2.sender.number == us)
-                return message1
-
-            return new Date(message1.time) > new Date(message2.time) ? message1 : message2
-        })
+    function determineLatest(us: string, messages: Array<Message>): MessageSnapshot {
+        const message = messages
+            .filter((v) => v.sender.number == us)
+            .reduce((message1, message2) => new Date(message1.time) > new Date(message2.time) ? message1 : message2)
 
         return {
             from: message.sender,
@@ -113,7 +109,7 @@ export default function Home() {
                             history.map((message) => {
                                 if (message.reference != payload.reference)
                                     return message
-                                if (message.status && message.status <= payload.code)
+                                if (message.status && message.status >= payload.code)
                                     return message
 
                                 return {
@@ -138,8 +134,9 @@ export default function Home() {
 
     return (
         <div className={"flex h-full"}>
-            <Sidebar conversations={[...conversations.values()].map((messages) => determineLatest(messages))}
-                     onSelect={(id) => setActive(() => id)} selected={active}/>
+            <Sidebar
+                conversations={[...conversations.entries()].map(([us, messages]) => determineLatest(us, messages)).sort((v1, v2) => v1.date > v2.date ? -1 : 1)}
+                onSelect={(id) => setActive(() => id)} selected={active}/>
             {active &&
             <Chat us={conversations.get(active)![0].recipient} them={conversations.get(active)![0].sender}
                   channel={conversations.get(active)![0].channel}
