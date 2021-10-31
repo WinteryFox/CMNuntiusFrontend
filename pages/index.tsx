@@ -3,22 +3,73 @@ import Sidebar from "../components/chat/Sidebar";
 import Chat from "../components/chat/Chat";
 import EventSource from "eventsource";
 import {Channel} from "../src/channel";
-import {MessageSnapshot, MoMessage} from "../src/json/message";
+import {Message, MessageSnapshot, MoMessage, MtMessage} from "../src/json/message";
+import {MtCreateResponse, ServerSentEvent, StatusReport} from "../src/json/response";
+import {MessageCreateRequest} from "../src/json/request";
+import rest from "../src/rest"
 
 export default function Home() {
     const [active, setActive] = useState<string>("")
-    const [conversations, setConversations] = useState<Map<string, Array<MoMessage>>>(new Map([]))
+    const [conversations, setConversations] = useState<Map<string, Array<Message>>>(new Map([]))
 
-    function determineLatest(messages: Array<MoMessage>): MessageSnapshot {
+    function determineLatest(messages: Array<Message>): MessageSnapshot {
         const message = messages.reduce((message1, message2) =>
             new Date(message1.time) > new Date(message2.time) ? message1 : message2)
 
         return {
-            from: message.from,
+            from: message.sender,
             channel: Channel[message.channel.toUpperCase() as keyof typeof Channel],
-            lastMessage: message.message.text,
+            lastMessage: message.content.text,
             date: new Date(message.time)
         }
+    }
+
+    function updateConversation(conversation: string, message: Message) {
+        const map = new Map(conversations)
+        map.set(
+            conversation,
+            (map.get(conversation) ?? [])
+                .concat(message)
+                .sort((v1, v2) => {
+                    if (v1.time && !v2.time)
+                        return 1
+                    else if (!v1.time && v2.time)
+                        return -1
+                    else if (v1.time && v2.time)
+                        return new Date(v1.time) > new Date(v2.time) ? 1 : -1
+                    else
+                        return 0
+                }),
+        )
+
+        setConversations(() => map)
+    }
+
+    async function createMessage(request: MessageCreateRequest) {
+        const response = await rest.post("/messages", request)
+        const payload = response.data as MtCreateResponse
+        if (response.status < 200 || response.status >= 300) {
+            // TODO: Handle error
+            console.error(`Failed to send message ${response.status} (${payload.errorCode}; ${payload.details})`)
+            return
+        }
+
+        console.info(`Sent message with reference ${payload.messages[0].reference}`)
+        updateConversation(request.recipient, {
+            sender: {
+                number: request.sender
+            },
+            recipient: {
+                number: request.recipient
+            },
+            reference: payload.messages[0].reference!,
+            channel: request.channel,
+            content: {
+                text: request.content
+            },
+            time: new Date(),
+            status: 0
+        })
     }
 
     useEffect(() => {
@@ -27,17 +78,54 @@ export default function Home() {
         source.onerror = (event: any) => console.error(event)
         source.onopen = () => console.info("Now listening to events...")
         source.onmessage = (e) => {
-            const payload = JSON.parse(e.data).payload as MoMessage
-            const map = new Map(conversations)
-            map.set(
-                payload.from.number,
-                (map.get(payload.from.number) ?? [])
-                    .concat([payload])
-                    .sort((v1, v2) => new Date(v1.time) > new Date(v2.time) ? 1 : -1),
-            )
+            const event = JSON.parse(e.data) as ServerSentEvent
 
-            setConversations(() => map)
-            console.info(`Received message with reference ${payload.reference}`)
+            switch (event.type) {
+                case "MESSAGE": {
+                    const payload = event.payload as MoMessage
+                    updateConversation(payload.from.number, {
+                        sender: payload.from,
+                        recipient: payload.to,
+                        reference: payload.reference,
+                        channel: payload.channel,
+                        content: payload.message,
+                        time: new Date(payload.time)
+                    })
+                    console.info(`Received message with reference ${payload.reference}`)
+                    break
+                }
+                case "STATUS": {
+                    const payload = event.payload as StatusReport
+                    console.info(`Received status report with reference ${payload.reference} status ${payload.status}`)
+                    setConversations((prev) => {
+                        const history = prev.get(payload.to)
+                        if (!history)
+                            return prev
+
+                        const temp = new Map(prev)
+                        temp.set(
+                            payload.to,
+                            history.map((message) => {
+                                if (message.reference != payload.reference)
+                                    return message
+                                if (message.status && message.status <= payload.code)
+                                    return message
+
+                                return {
+                                    ...message,
+                                    status: payload.code
+                                }
+                            })
+                        )
+                        return temp
+                    })
+                    break
+                }
+                default: {
+                    console.warn(`Received unknown event of type ${event.type}`)
+                    break
+                }
+            }
         }
 
         return () => source.close()
@@ -47,7 +135,11 @@ export default function Home() {
         <div className={"flex h-full"}>
             <Sidebar conversations={[...conversations.values()].map((messages) => determineLatest(messages))}
                      onSelect={(id) => setActive(() => id)} selected={active}/>
-            <Chat history={conversations.get(active)}/>
+            {active &&
+            <Chat us={conversations.get(active)![0].recipient} them={conversations.get(active)![0].sender}
+                  channel={conversations.get(active)![0].channel}
+                  history={conversations.get(active)!} onMtCreate={createMessage}/>
+            }
         </div>
     )
 }

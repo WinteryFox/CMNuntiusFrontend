@@ -1,3 +1,15 @@
+export interface ServerSentEvent {
+    type: string,
+    payload: any
+}
+
+export interface StatusReport {
+    code: number,
+    status: string,
+    reference: string,
+    to: string
+}
+
 export interface MessageCreateResponse {
     to: string,
     status: string,

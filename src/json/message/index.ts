@@ -7,6 +7,26 @@ export interface MessageSnapshot {
     date: Date
 }
 
+export interface Message {
+    reference: string,
+    channel: string,
+    content: Content,
+    sender: From,
+    recipient: To,
+    time: Date,
+    status?: number
+}
+
+export interface MtMessage {
+    reference?: string,
+    body: Content,
+    to: Array<To>,
+    from: string,
+    allowedChannels: Array<Channel>,
+    time?: Date,
+    status?: string
+}
+
 export interface MoMessage {
     reference: string,
     messageContext: string,
@@ -21,7 +41,7 @@ export interface MoMessage {
 
 export interface From {
     number: string,
-    name: string
+    name?: string
 }
 
 export interface To {
@@ -30,7 +50,7 @@ export interface To {
 
 export interface Content {
     text: string,
-    media: Media
+    media?: Media
 }
 
 export interface Media {

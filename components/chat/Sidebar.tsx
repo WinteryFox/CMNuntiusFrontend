@@ -1,6 +1,7 @@
 import React from 'react';
 import Conversation from "./Conversation";
-import {formatDate, MessageSnapshot} from "../../src/json/response";
+import {formatDate} from "../../src/json/response";
+import {MessageSnapshot} from "../../src/json/message";
 
 // TODO: mock content into dynamic conversation in list and custom minimal scrollbar
 export default function Sidebar(props: {
