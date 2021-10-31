@@ -1,9 +1,9 @@
-import React, {MouseEventHandler} from 'react';
+import React from 'react';
 import Image from "next/image";
-import {Channel} from "../src/Channel"
-import {From} from "../src/Message";
+import {Channel} from "../../src/channel"
+import {From} from "../../src/json/message";
 
-export default function Conversations(props: {
+export default function Conversation(props: {
     from: From,
     channel: Channel,
     content: string,

@@ -1,4 +1,4 @@
-import {Channel} from "./Channel"
+import {Channel} from "../../channel"
 
 export interface MessageSnapshot {
     from: From,
@@ -7,7 +7,7 @@ export interface MessageSnapshot {
     date: Date
 }
 
-export interface Message {
+export interface MoMessage {
     reference: string,
     messageContext: string,
     from: From,
@@ -41,11 +41,4 @@ export interface Media {
 
 export interface Custom {
 
-}
-
-export function formatDate(date: Date): string {
-    if (date.getUTCDate() == new Date().getUTCDate())
-        return date.toLocaleTimeString()
-    else
-        return date.toLocaleDateString()
 }

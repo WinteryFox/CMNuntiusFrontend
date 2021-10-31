@@ -1,23 +1,23 @@
 import React, {useEffect, useState} from "react";
-import ChatSidebar from "../components/ChatSidebar";
-import ChatWindow from "../components/ChatWindow";
+import Sidebar from "../components/chat/Sidebar";
+import Chat from "../components/chat/Chat";
 import EventSource from "eventsource";
-import {Message, MessageSnapshot} from "../src/Message";
-import {Channel} from "../src/Channel";
+import {Channel} from "../src/channel";
+import {MessageSnapshot, MoMessage} from "../src/json/message";
 
 export default function Home() {
     const [active, setActive] = useState<string>("")
-    const [conversations, setConversations] = useState<Map<string, Array<Message>>>(new Map([]))
+    const [conversations, setConversations] = useState<Map<string, Array<MoMessage>>>(new Map([]))
 
-    function determineLatest(messages: Array<Message>): MessageSnapshot {
+    function determineLatest(messages: Array<MoMessage>): MessageSnapshot {
         const message = messages.reduce((message1, message2) =>
-            new Date(message1.timeUtc) > new Date(message2.timeUtc) ? message1 : message2)
+            new Date(message1.time) > new Date(message2.time) ? message1 : message2)
 
         return {
             from: message.from,
             channel: Channel[message.channel.toUpperCase() as keyof typeof Channel],
             lastMessage: message.message.text,
-            date: new Date(message.timeUtc)
+            date: new Date(message.time)
         }
     }
 
@@ -25,16 +25,19 @@ export default function Home() {
         const source = new EventSource("http://localhost:8282/api/events")
 
         source.onerror = (event: any) => console.error(event)
-        source.onopen = () => console.log("Now listening to events...")
+        source.onopen = () => console.info("Now listening to events...")
         source.onmessage = (e) => {
-            const payload = JSON.parse(e.data).payload as Message
+            const payload = JSON.parse(e.data).payload as MoMessage
             const map = new Map(conversations)
             map.set(
                 payload.from.number,
-                (map.get(payload.from.number) ?? []).concat([payload]),
+                (map.get(payload.from.number) ?? [])
+                    .concat([payload])
+                    .sort((v1, v2) => new Date(v1.time) > new Date(v2.time) ? 1 : -1),
             )
 
             setConversations(() => map)
+            console.info(`Received message with reference ${payload.reference}`)
         }
 
         return () => source.close()
@@ -42,9 +45,9 @@ export default function Home() {
 
     return (
         <div className={"flex h-full"}>
-            <ChatSidebar conversations={[...conversations.values()].map((messages) => determineLatest(messages))}
-                         onSelect={(id) => setActive(() => id)} selected={active}/>
-            <ChatWindow history={conversations.get(active)}/>
+            <Sidebar conversations={[...conversations.values()].map((messages) => determineLatest(messages))}
+                     onSelect={(id) => setActive(() => id)} selected={active}/>
+            <Chat history={conversations.get(active)}/>
         </div>
     )
 }
