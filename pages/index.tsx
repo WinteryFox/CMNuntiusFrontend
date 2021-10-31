@@ -3,7 +3,7 @@ import Sidebar from "../components/chat/Sidebar";
 import Chat from "../components/chat/Chat";
 import EventSource from "eventsource";
 import {Channel} from "../src/channel";
-import {Message, MessageSnapshot, MoMessage, MtMessage} from "../src/json/message";
+import {Message, MessageSnapshot, MoMessage} from "../src/json/message";
 import {MtCreateResponse, ServerSentEvent, StatusReport} from "../src/json/response";
 import {MessageCreateRequest} from "../src/json/request";
 import rest from "../src/rest"
@@ -13,8 +13,13 @@ export default function Home() {
     const [conversations, setConversations] = useState<Map<string, Array<Message>>>(new Map([]))
 
     function determineLatest(messages: Array<Message>): MessageSnapshot {
-        const message = messages.reduce((message1, message2) =>
-            new Date(message1.time) > new Date(message2.time) ? message1 : message2)
+        const us = conversations.get(active)![0].recipient.number
+        const message = messages.reduce((message1, message2) => {
+            if (message2.sender.number == us)
+                return message1
+
+            return new Date(message1.time) > new Date(message2.time) ? message1 : message2
+        })
 
         return {
             from: message.sender,
