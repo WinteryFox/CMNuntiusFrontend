@@ -2,7 +2,7 @@ import '../styles/globals.sass'
 import type {AppProps} from 'next/app'
 import Script from "next/script";
 import React from "react";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/navbar";
 
 export default function Nuntius({Component, pageProps}: AppProps) {
     return (

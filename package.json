@@ -10,12 +10,15 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
+    "axios": "^0.24.0",
+    "eventsource": "^1.1.0",
     "next": "11.1.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "sass": "^1.42.1"
   },
   "devDependencies": {
+    "@types/eventsource": "^1.1.7",
     "@types/react": "17.0.24",
     "autoprefixer": "^9.8.6",
     "eslint": "7.32.0",
