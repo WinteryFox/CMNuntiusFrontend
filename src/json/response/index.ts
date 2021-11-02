@@ -29,5 +29,5 @@ export function formatDate(date: Date): string {
     if (date.getUTCDate() == new Date().getUTCDate())
         return date.toLocaleTimeString()
     else
-        return date.toLocaleString()
+        return date.toLocaleDateString()
 }
