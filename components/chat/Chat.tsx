@@ -39,97 +39,80 @@ export default function Chat(props: {
     }
 
     return (
-        <div className={"bg-white w-full"}>
-            <cm-communicator>
-                <div className="header flex items-center justify-between">
-                    <div className={"flex items-center"}>
-                        <Image
-                            src={Channel[props.channel.toUpperCase() as keyof typeof Channel] as any}
-                            alt={"channel"} objectFit={"fill"}/>
+        <div className={"flex flex-col bg-white w-full"}>
+            <div className="flex items-center justify-between p-5 border-b">
+                <div className={"flex items-center"}>
+                    <Image
+                        src={Channel[props.channel.toUpperCase() as keyof typeof Channel] as any}
+                        alt={"channel"} objectFit={"fill"}/>
 
-                        <div className={"ml-2 text-xl font-bold text-nowrap text-truncate"}>
-                            {props.them.number ? props.them.name : props.them.number}
-                        </div>
+                    <div className={"ml-2 text-xl font-bold text-nowrap text-truncate"}>
+                        {props.them.number ? props.them.name : props.them.number}
                     </div>
-
-                    <cm-context-menu>
-                        <cm-context-menu-option data-icon="edit" data-display="Edit"/>
-                        <cm-context-menu-option data-icon="duplicate" data-display="Duplicate"/>
-
-                        <cm-context-menu-option
-                            data-href="data:text/plain;charset=utf-8,this is a textual download"
-                            data-download="myfile.txt"
-                            data-icon="download"
-                            data-display="Download myfile.txt"/>
-                        <cm-context-menu-line/>
-                    </cm-context-menu>
                 </div>
-                <div className="body overflow-y-auto">
-                    <div className={"flex flex-col p-10"}>
-                        {props.history.map((message) => (
-                            <div key={message.reference}
-                                 className={`flex flex-col mb-2 w-2/5 ${message.sender.number == props.us.number ? "align-self-end" : ""}`}>
-                                <div
-                                    className={`whitespace-pre-wrap break-words bg-white p-5 rounded-3xl text-black ${message.sender.number == props.us.number ? "bg-blue-400 text-white" : ""}`}>
-                                    {message.content.text}
-                                </div>
 
-                                {message.sender.number != props.us.number ?
-                                    <div className={"flex mt-0.5 items-center justify-between"}>
-                                        <div className={"flex overflow-hidden"}>
-                                            <div className={"text-nowrap text-truncate"}>
-                                                {message.sender.name ? message.sender.name : message.sender.number}
-                                            </div>
+                <cm-context-menu>
+                    <cm-context-menu-option data-icon="edit" data-display="Edit"/>
+                    <cm-context-menu-option data-icon="duplicate" data-display="Duplicate"/>
+
+                    <cm-context-menu-option
+                        data-href="data:text/plain;charset=utf-8,this is a textual download"
+                        data-download="myfile.txt"
+                        data-icon="download"
+                        data-display="Download myfile.txt"/>
+                    <cm-context-menu-line/>
+                </cm-context-menu>
+            </div>
+            <div className="body overflow-y-auto bg-gray-50 h-full">
+                <div className={"flex flex-col p-10"}>
+                    {props.history.map((message) => (
+                        <div key={message.reference}
+                             className={`flex flex-col mb-2 w-2/5 ${message.sender.number == props.us.number ? "align-self-end" : ""}`}>
+                            <div
+                                className={`whitespace-pre-wrap break-words bg-white p-5 rounded-3xl text-black ${message.sender.number == props.us.number ? "bg-blue-400 text-white" : ""}`}>
+                                {message.content.text}
+                            </div>
+
+                            {message.sender.number != props.us.number ?
+                                <div className={"flex mt-0.5 items-center justify-between"}>
+                                    <div className={"flex overflow-hidden"}>
+                                        <div className={"text-nowrap text-truncate"}>
+                                            {message.sender.name ? message.sender.name : message.sender.number}
                                         </div>
-                                        <time dateTime={message.time.toISOString()} className="time flex flex-shrink-0">
-                                            {formatDate(message.time)}
-                                        </time>
-                                    </div> :
-                                    <div className={"flex mt-0.5 items-center justify-end"}>
-                                        <time dateTime={message.time.toISOString()} className={"mr-2"}>
-                                            {formatDate(message.time)}
-                                        </time>
-                                        {message.status == 0 &&
-                                        <i className={"fas fa-spinner animate-spin w-16px"} title={"Accepted"}/>}
-                                        {message.status == 1 &&
-                                        <i className={"fas fa-times text-red-400"} title={"Rejected"}/>}
-                                        {message.status == 2 &&
-                                        <i className={"fas fa-check"} title={"Sent"}/>}
-                                        {message.status == 3 &&
-                                        <i className={"fas fa-times-circle text-red-400"} title={"Failed"}/>}
-                                        {message.status == 4 &&
-                                        <i className={"fas fa-check text-blue-400"} title={"Read"}/>}
                                     </div>
-                                }
-                            </div>
-                        ))}
-                    </div>
-                </div>
-                <div className="footer">
-                    <div className="row">
-                        <div className="col-10 col-md-11 form-group">
-                            <div className="form-row">
-                                <div className="form-input-special">
-                                    <input className="form-control" placeholder="Start typing… " value={input}
-                                           onChange={(event) => setInput(event.target.value)}/>
-                                    <span className="input-left icon">
-                                        <span className=" cm-icon cm-icon-comment" aria-hidden="true"/>
-                                        </span>
-                                    <span className="input-right icon">
-                                            <span className="cm-icon cm-icon-attachment" aria-hidden="true"/>
-                                            <span className="cm-icon cm-icon-face-happy-open" aria-hidden="true"/>
-                                        </span>
+                                    <time dateTime={message.time.toISOString()} className="time flex flex-shrink-0">
+                                        {formatDate(message.time)}
+                                    </time>
+                                </div> :
+                                <div className={"flex mt-0.5 items-center justify-end"}>
+                                    <time dateTime={message.time.toISOString()} className={"mr-2"}>
+                                        {formatDate(message.time)}
+                                    </time>
+                                    {message.status == 0 &&
+                                    <i className={"fas fa-spinner animate-spin w-16px"} title={"Accepted"}/>}
+                                    {message.status == 1 &&
+                                    <i className={"fas fa-times text-red-400"} title={"Rejected"}/>}
+                                    {message.status == 2 &&
+                                    <i className={"fas fa-check"} title={"Sent"}/>}
+                                    {message.status == 3 &&
+                                    <i className={"fas fa-times-circle text-red-400"} title={"Failed"}/>}
+                                    {message.status == 4 &&
+                                    <i className={"fas fa-check text-blue-400"} title={"Read"}/>}
                                 </div>
-                            </div>
+                            }
                         </div>
-                        <div className="col-2 col-md-1 text-right">
-                            <button className="btn btn-cta-icon" onClick={sendMessage} disabled={isSending}>
-                                <span className="cm-icon cm-icon-send" aria-hidden="true"/>
-                            </button>
-                        </div>
-                    </div>
+                    ))}
                 </div>
-            </cm-communicator>
+            </div>
+            <div className="flex w-full justify-center bg-gray-50 px-10 pb-5">
+                <input className="w-full rounded-3xl px-5 mr-5"
+                       placeholder={`Message ${props.them.name ? props.them.name : props.them.number}`} value={input}
+                       onChange={(event) => setInput(event.target.value)}/>
+
+                <button className="btn btn-cta-icon" onClick={sendMessage} disabled={isSending}>
+                    <span className="cm-icon cm-icon-send" aria-hidden="true"/>
+                </button>
+            </div>
         </div>
     );
 }
