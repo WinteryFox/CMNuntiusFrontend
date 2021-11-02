@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {createRef, useEffect, useState} from "react";
 import Image from "next/image"
 import {formatDate} from "../../src/json/response";
 import {Channel} from "../../src/channel";
@@ -13,6 +13,7 @@ export default function Chat(props: {
     history: Array<Message>,
     onMtCreate: (content: MessageCreateRequest) => void
 }) {
+    const chatEnd = createRef<HTMLDivElement>()
     const [input, setInput] = useState<string>("")
     const [isSending, setSending] = useState<boolean>(false)
 
@@ -37,6 +38,8 @@ export default function Chat(props: {
         }
         setInput(() => "")
     }
+
+    useEffect(() => chatEnd.current?.scrollIntoView({behavior: "smooth"}))
 
     return (
         <div className={"flex flex-col bg-white w-full"}>
@@ -102,6 +105,7 @@ export default function Chat(props: {
                             }
                         </div>
                     ))}
+                    <div ref={chatEnd}/>
                 </div>
             </div>
             <div className="flex w-full justify-center bg-gray-50 px-10 pb-5">
