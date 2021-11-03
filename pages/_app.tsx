@@ -10,7 +10,7 @@ export default function Nuntius({Component, pageProps}: AppProps) {
         <div>
             <Head>
                 <title>Messaging platform - Nuntius</title>
-                <link rel="icon" href="cm.svg" />
+                <link rel="icon" href="/cm.svg" />
             </Head>
             <div className={"flex flex-col h-screen"}>
                 <Script src={"https://www.cm.com/en-gb/app/aurora/js/webcomponents-loader.js"}/>
