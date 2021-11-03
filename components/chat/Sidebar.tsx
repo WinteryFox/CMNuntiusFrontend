@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Conversation from "./Conversation";
 import {MessageSnapshot} from "../../src/json/message";
 
@@ -8,6 +8,13 @@ export default function Sidebar(props: {
     selected: string,
     onSelect: (id: string) => void
 }) {
+    const [search, setSearch] = useState<string>("")
+
+    function filterConversations(): Array<MessageSnapshot> {
+        return props.conversations
+            .filter((v) => v.from.name?.toLowerCase()?.match(search))
+    }
+
     return (
         <div className={"flex flex-col border-r px-6 pt-6 w-full max-w-sm bg-gray-100"}>
             <div className={"flex flex-col mb-4"}>
@@ -15,7 +22,9 @@ export default function Sidebar(props: {
 
                 <div className={"form-group form-row"}>
                     <div className={"form-input-special"}>
-                        <input type="text" className="form-control " placeholder="Start searching… "/>
+                        <input type="text" className="form-control" value={search}
+                               onChange={(e) => setSearch(() => e.target.value)}
+                               placeholder={`Search ${props.conversations.length} conversations`}/>
                         <span className="input-left icon">
                             <span aria-hidden="true" className="cm-icon cm-icon-search"/>
                         </span>
@@ -23,11 +32,11 @@ export default function Sidebar(props: {
                 </div>
             </div>
             <div className={"flex flex-col p-1 overflow-y-auto h-full"}>
-                {props.conversations.length == 0 ?
+                {filterConversations().length == 0 ?
                     <div className={"flex items-center justify-center h-full"}>
                         No conversations to show
                     </div> :
-                    props.conversations.map((conversation) => (
+                    filterConversations().map((conversation) => (
                         <div key={conversation.from.number} className={"mb-1"}>
                             <Conversation channel={conversation.channel}
                                           from={conversation.from}
