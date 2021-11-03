@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-export default function navbar() {
+export default function header() {
     return (
         <header className={"flex w-full top-0 z-40 bg-white px-8 py-3 border-b"}>
             <nav>
