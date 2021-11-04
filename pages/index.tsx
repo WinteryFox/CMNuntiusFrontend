@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import Sidebar from "../components/chat/Sidebar";
 import Chat from "../components/chat/Chat";
+import EmptyChat from "../components/emptyChat"
 import EventSource from "eventsource";
 import {Channel} from "../src/channel";
 import {Message, MessageSnapshot, MoMessage} from "../src/json/message";
@@ -142,6 +143,7 @@ export default function Home() {
                   channel={conversations.get(active)![0].channel}
                   history={conversations.get(active)!} onMtCreate={createMessage}/>
             }
+            <EmptyChat/>
         </div>
     )
 }
