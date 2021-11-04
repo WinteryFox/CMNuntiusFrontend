@@ -2,7 +2,8 @@ import React, {useState} from 'react';
 import Conversation from "./Conversation";
 import {MessageSnapshot} from "../../src/json/message";
 
-// TODO: mock content into dynamic conversation in list and custom minimal scrollbar
+// TODO: custom minimal scrollbar
+
 export default function Sidebar(props: {
     conversations: Array<MessageSnapshot>,
     selected: string,
@@ -16,7 +17,7 @@ export default function Sidebar(props: {
     }
 
     return (
-        <div className={"flex flex-col border-r px-6 pt-6 w-full max-w-sm bg-gray-100"}>
+        <div className={"flex flex-col border-r px-6 pt-6 w-full max-w-sm"}>
             <div className={"flex flex-col mb-4"}>
                 <h3 className={"flex h-8"}>Chats</h3>
 
@@ -31,7 +32,7 @@ export default function Sidebar(props: {
                     </div>
                 </div>
             </div>
-            <div className={"flex flex-col p-1 overflow-y-auto h-full"}>
+            <div className={"flex flex-col p-1 overflow-y-auto h-full border-t-2 border-b-2"}>
                 {filterConversations().length == 0 ?
                     <div className={"flex items-center justify-center h-full"}>
                         No conversations to show
