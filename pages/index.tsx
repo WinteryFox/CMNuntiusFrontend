@@ -1,13 +1,14 @@
 import React, {useEffect, useState} from "react";
+import Head from 'next/head'
 import Sidebar from "../components/chat/Sidebar";
 import Chat from "../components/chat/Chat";
-import EmptyChat from "../components/emptyChat"
 import EventSource from "eventsource";
 import {Channel} from "../src/channel";
 import {Message, MessageSnapshot, MoMessage} from "../src/json/message";
 import {MtCreateResponse, ServerSentEvent, StatusReport} from "../src/json/response";
 import {MessageCreateRequest} from "../src/json/request";
 import rest from "../src/rest"
+import Image from "next/image";
 
 export default function Home() {
     const [active, setActive] = useState<string>("")
@@ -135,15 +136,27 @@ export default function Home() {
 
     return (
         <div className={"flex h-full"}>
+            <Head>
+                <title>Messaging platform - Nuntius</title>
+                <link rel="icon" href="/cm.svg"/>
+            </Head>
             <Sidebar
                 conversations={[...conversations.entries()].map(([us, messages]) => determineLatest(us, messages)).sort((v1, v2) => v1.date > v2.date ? -1 : 1)}
                 onSelect={(id) => setActive(() => id)} selected={active}/>
-            {active &&
-            <Chat us={conversations.get(active)![0].recipient} them={conversations.get(active)![0].sender}
-                  channel={conversations.get(active)![0].channel}
-                  history={conversations.get(active)!} onMtCreate={createMessage}/>
+            {active ?
+                <Chat us={conversations.get(active)![0].recipient} them={conversations.get(active)![0].sender}
+                      channel={conversations.get(active)![0].channel}
+                      history={conversations.get(active)!} onMtCreate={createMessage}/>
+                :
+                <div className={"flex items-center justify-center h-full w-full"}>
+                    <div className={"flex flex-col"}>
+                        <Image src={"/noMsg.png"} alt={"Logo"} width={450} height={400}/>
+                        <span
+                            className={"font-bold text-black text-base text-center"}>You have not selected any message</span>
+                        <span className={"text-base text-center"}>Choose one from your existing messages</span>
+                    </div>
+                </div>
             }
-            <EmptyChat/>
         </div>
     )
 }

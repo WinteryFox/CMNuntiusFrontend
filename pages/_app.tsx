@@ -3,15 +3,10 @@ import type {AppProps} from 'next/app'
 import Script from "next/script";
 import React from "react";
 import Header from "../components/header";
-import Head from 'next/head'
 
 export default function Nuntius({Component, pageProps}: AppProps) {
     return (
         <div>
-            <Head>
-                <title>Messaging platform - Nuntius</title>
-                <link rel="icon" href="/cm.svg" />
-            </Head>
             <div className={"flex flex-col h-screen"}>
                 <Script src={"https://www.cm.com/en-gb/app/aurora/js/webcomponents-loader.js"}/>
                 <Script src={"https://www.cm.com/en-gb/app/aurora/js/aurora-components-legacy.js"}/>
