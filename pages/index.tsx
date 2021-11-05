@@ -150,7 +150,7 @@ export default function Home() {
                 :
                 <div className={"flex items-center justify-center h-full w-full"}>
                     <div className={"flex flex-col"}>
-                        <Image src={"/noMsg.png"} alt={"Logo"} width={450} height={400}/>
+                        <Image src={"/no-msg.png"} alt={"Logo"} width={450} height={400}/>
                         <span
                             className={"font-bold text-black text-base text-center"}>You have not selected any message</span>
                         <span className={"text-base text-center"}>Choose one from your existing messages</span>
