@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import Conversation from "./Conversation";
 import {MessageSnapshot} from "../../src/json/message";
+import ChannelFilter from "./ChannelFilter";
 
 // TODO: custom minimal scrollbar and channel filter logic
 
@@ -45,54 +46,10 @@ export default function Sidebar(props: {
                         </h4>
                         {showOptions && (
                             <div className={"pt-6"}>
-                                <div className={"flex items-center"}>
-                                    <div className="form-check">
-                                        <label>
-                                            <input id={"twitter"} type="checkbox" value="Unchecked value"/>
-                                            <span className="label"> Twitter </span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div className={"flex items-center"}>
-                                    <div className="form-check">
-                                        <label>
-                                            <input id={"twitter"} type="checkbox" value="Unchecked value"/>
-                                            <span className="label"> Viber </span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div className={"flex items-center"}>
-                                    <div className="form-check">
-                                        <label>
-                                            <input id={"twitter"} type="checkbox" value="Unchecked value"/>
-                                            <span className="label"> Line </span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div className={"flex items-center"}>
-                                    <div className="form-check">
-                                        <label>
-                                            <input id={"twitter"} type="checkbox" value="Unchecked value"/>
-                                            <span className="label"> WeChat </span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div className={"flex items-center"}>
-                                    <div className="form-check">
-                                        <label>
-                                            <input id={"twitter"} type="checkbox" value="Unchecked value"/>
-                                            <span className="label"> Telegram </span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div className={"flex items-center"}>
-                                    <div className="form-check">
-                                        <label>
-                                            <input id={"twitter"} type="checkbox" value="Unchecked value"/>
-                                            <span className="label"> Meta </span>
-                                        </label>
-                                    </div>
-                                </div>
+                                <ChannelFilter channel="Twitter"/>
+                                <ChannelFilter channel="Facebook Messenger"/>
+                                <ChannelFilter channel="Instagram Messaging"/>
+                                <ChannelFilter channel="WhatsApp Business"/>
                             </div>
                         )}
                     </div>
