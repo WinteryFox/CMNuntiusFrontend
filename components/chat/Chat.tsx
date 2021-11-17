@@ -42,13 +42,13 @@ export default function Chat(props: {
 
     return (
         <div className={"flex flex-col w-full"}>
-            <div className="flex items-center justify-between p-5 border-b">
-                <div className={"flex items-center"}>
+            <div className="flex items-center justify-between dark:bg-gray-900 p-5 border-b dark:border-gray-700">
+                <div className={"flex items-center "}>
                     <Image
                         src={Channel[props.channel.toUpperCase() as keyof typeof Channel] as any}
                         alt={"channel"} width={30} height={30}/>
 
-                    <div className={"ml-2 text-xl font-bold text-nowrap text-truncate"}>
+                    <div className={"ml-2 text-xl font-bold text-nowrap text-truncate dark:text-white"}>
                         {props.them.number ? props.them.name : props.them.number}
                     </div>
                 </div>
@@ -65,7 +65,7 @@ export default function Chat(props: {
                     <cm-context-menu-line/>
                 </cm-context-menu>
             </div>
-            <div className="body overflow-y-auto bg-gray-50 h-full">
+            <div className="body overflow-y-auto bg-gray-50 dark:bg-gray-800 h-full">
                 <div className={"flex flex-col p-10"}>
                     {props.history.map((message) => (
                         <div key={message.reference}
@@ -78,15 +78,15 @@ export default function Chat(props: {
                             {message.sender.number != props.us.number ?
                                 <div className={"flex mt-0.5 items-center justify-between"}>
                                     <div className={"flex overflow-hidden"}>
-                                        <div className={"text-nowrap text-truncate"}>
+                                        <div className={"text-nowrap text-truncate dark:text-gray-200"}>
                                             {message.sender.name ? message.sender.name : message.sender.number}
                                         </div>
                                     </div>
-                                    <time dateTime={message.time.toISOString()} className="time flex flex-shrink-0">
+                                    <time dateTime={message.time.toISOString()} className="time flex flex-shrink-0 dark:text-gray-200">
                                         {formatDate(message.time)}
                                     </time>
                                 </div> :
-                                <div className={"flex mt-0.5 items-center justify-end"}>
+                                <div className={"flex mt-0.5 items-center justify-end dark:text-gray-200"}>
                                     <time dateTime={message.time.toISOString()} className={"mr-2"}>
                                         {formatDate(message.time)}
                                     </time>
@@ -107,7 +107,7 @@ export default function Chat(props: {
                     <div ref={chatEnd}/>
                 </div>
             </div>
-            <div className="flex w-full justify-center px-10 py-5 border-t-0">
+            <div className="flex w-full justify-center px-10 py-5 border-t dark:border-gray-700 dark:bg-gray-900">
                 <input className="w-full rounded-3xl px-5 mr-5 border-2"
                        placeholder={`Message ${props.them.name ? props.them.name : props.them.number}`} value={input}
                        onChange={(event) => setInput(event.target.value)}/>

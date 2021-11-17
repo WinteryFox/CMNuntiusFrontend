@@ -148,12 +148,12 @@ export default function Home() {
                       channel={conversations.get(active)![0].channel}
                       history={conversations.get(active)!} onMtCreate={createMessage}/>
                 :
-                <div className={"flex items-center justify-center h-full w-full"}>
+                <div className={"flex items-center justify-center dark:bg-gray-900 h-full w-full"}>
                     <div className={"flex flex-col"}>
                         <Image src={"/no-msg.png"} alt={"Logo"} width={450} height={400}/>
                         <span
-                            className={"font-bold text-black text-base text-center"}>You have not selected any message</span>
-                        <span className={"text-base text-center"}>Choose one from your existing messages</span>
+                            className={"font-bold dark:text-white text-black text-base text-center"}>You have not selected any message</span>
+                        <span className={"text-base dark:text-gray-400 text-center"}>Choose one from your existing messages</span>
                     </div>
                 </div>
             }
