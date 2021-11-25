@@ -55,13 +55,13 @@ export default function Sidebar(props: {
                     </div>
                 </div>
                 <div className={"form-group form-row"}>
-                    <div className={"form-input-special"}>
-                        <input type="text" className="form-control" value={search}
-                               onChange={(e) => setSearch(() => e.target.value)}
-                               placeholder={`Search ${props.conversations.length} conversations`}/>
-                        <span className="input-left icon">
+                    <div className={"flex w-full"}>
+                        <span className="input-left icon pr-3">
                             <span aria-hidden="true" className="cm-icon cm-icon-search"/>
                         </span>
+                        <input type="text" className="dark:bg-black border dark:border-gray-700 focus:border-blue-500 dark:text-white w-full rounded-3xl px-5 mr-5 pt-1 pb-1" value={search}
+                               onChange={(e) => setSearch(() => e.target.value)}
+                               placeholder={`Search ${props.conversations.length} conversations`}/>
                     </div>
                 </div>
             </div>

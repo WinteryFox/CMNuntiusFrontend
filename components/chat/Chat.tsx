@@ -5,6 +5,8 @@ import {From, Message, To} from "../../src/json/message";
 import {MessageCreateRequest} from "../../src/json/request";
 import ChatMessage from "./ChatMessage";
 
+// TODO: remove cm context menu components
+
 export default function Chat(props: {
     us: To,
     them: From,
@@ -74,7 +76,7 @@ export default function Chat(props: {
                 </div>
             </div>
             <div className="flex w-full justify-center px-10 py-5 bg-gray-50 border-t dark:border-gray-700 dark:bg-black">
-                <input className="dark:bg-black border-0 w-full rounded-3xl px-5 mr-5"
+                <input className="dark:bg-black border dark:border-gray-700 focus:border-blue-500 dark:text-white w-full rounded-3xl px-5 mr-5"
                        placeholder={`Message ${props.them.name ? props.them.name : props.them.number}`} value={input}
                        onChange={(event) => setInput(event.target.value)}/>
 
