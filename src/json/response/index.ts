@@ -27,7 +27,7 @@ export interface MtCreateResponse {
 
 export function formatDate(date: Date): string {
     if (date.getUTCDate() == new Date().getUTCDate())
-        return date.toLocaleTimeString()
+        return date.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})
     else
-        return date.toLocaleDateString()
+        return date.toLocaleDateString([], {hour: '2-digit', minute: '2-digit'})
 }

@@ -5,7 +5,6 @@ import {From, Message, To} from "../../src/json/message";
 import {MessageCreateRequest} from "../../src/json/request";
 import ChatMessage from "./ChatMessage";
 
-// TODO: properties,text templates and reformat code for unique user chat window
 export default function Chat(props: {
     us: To,
     them: From,
@@ -42,14 +41,14 @@ export default function Chat(props: {
     useEffect(() => chatEnd.current?.scrollIntoView({behavior: "smooth"}))
 
     return (
-        <div className={"flex flex-col bg-white w-full"}>
-            <div className="flex items-center justify-between p-5 border-b">
-                <div className={"flex items-center"}>
+        <div className={"flex flex-col w-full"}>
+            <div className="flex items-center justify-between dark:bg-gray-900 p-5 border-b dark:border-gray-700">
+                <div className={"flex items-center "}>
                     <Image
                         src={Channel[props.channel.toUpperCase() as keyof typeof Channel] as any}
-                        alt={"channel"} objectFit={"fill"}/>
+                        alt={"channel"} width={30} height={30}/>
 
-                    <div className={"ml-2 text-xl font-bold text-nowrap text-truncate"}>
+                    <div className={"ml-2 text-xl font-bold text-nowrap text-truncate dark:text-white"}>
                         {props.them.number ? props.them.name : props.them.number}
                     </div>
                 </div>
@@ -66,7 +65,7 @@ export default function Chat(props: {
                     <cm-context-menu-line/>
                 </cm-context-menu>
             </div>
-            <div className="body overflow-y-auto bg-gray-50 h-full">
+            <div className="body overflow-y-auto bg-gray-50 dark:bg-gray-800 h-full">
                 <div className={"flex flex-col p-10"}>
                     {props.history.map((message) => (
                         <ChatMessage key={message.reference} message={message} us={props.us}/>
@@ -74,8 +73,8 @@ export default function Chat(props: {
                     <div ref={chatEnd}/>
                 </div>
             </div>
-            <div className="flex w-full justify-center bg-gray-50 px-10 pb-5">
-                <input className="w-full rounded-3xl px-5 mr-5"
+            <div className="flex w-full justify-center px-10 py-5 border-t dark:border-gray-700 dark:bg-gray-900">
+                <input className="w-full rounded-3xl px-5 mr-5 border-2"
                        placeholder={`Message ${props.them.name ? props.them.name : props.them.number}`} value={input}
                        onChange={(event) => setInput(event.target.value)}/>
 
