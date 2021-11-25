@@ -14,6 +14,13 @@ export default function Conversation(props: {
     active: boolean,
     onSelect: (id: string) => void
 }) {
+    function renderContent(): string {
+        if (!props.content || props.content.length === 0)
+            return props.content
+        else
+            return "Sent an attachment."
+    }
+
     return (
         <div className={`cursor-pointer select-none hover:bg-opacity-50 pr-1.5 
             ${props.active ? "border-r-2 border-blue-300" : "hover:border-r-2 hover:border-gray-200"}`}>
@@ -31,7 +38,9 @@ export default function Conversation(props: {
                               className={"flex-shrink-0 dark:text-gray-200"}>{formatDate(props.time)}</time>
                     </div>
 
-                    <p className={"text-nowrap text-truncate dark:text-gray-200"}>{props.content}</p>
+                    <div className={"text-nowrap text-truncate dark:text-gray-200"}>
+                        {renderContent()}
+                    </div>
                 </div>
             </div>
         </div>
