@@ -42,7 +42,7 @@ export default function Chat(props: {
 
     return (
         <div className={"flex flex-col w-full"}>
-            <div className="flex items-center justify-between dark:bg-gray-900 p-5 border-b dark:border-gray-700">
+            <div className="flex items-center justify-between dark:bg-black p-5 border-b dark:border-gray-700">
                 <div className={"flex items-center "}>
                     <Image
                         src={Channel[props.channel.toUpperCase() as keyof typeof Channel] as any}
@@ -65,7 +65,7 @@ export default function Chat(props: {
                     <cm-context-menu-line/>
                 </cm-context-menu>
             </div>
-            <div className="body overflow-y-auto bg-gray-50 dark:bg-gray-800 h-full">
+            <div className="body overflow-y-auto bg-gray-50 dark:bg-black h-full">
                 <div className={"flex flex-col p-10"}>
                     {props.history.map((message) => (
                         <ChatMessage key={message.reference} message={message} us={props.us}/>
@@ -73,7 +73,7 @@ export default function Chat(props: {
                     <div ref={chatEnd}/>
                 </div>
             </div>
-            <div className="flex w-full justify-center px-10 py-5 bg-gray-50 dark:border-gray-700 dark:bg-gray-800">
+            <div className="flex w-full justify-center px-10 py-5 bg-gray-50 border-t dark:border-gray-700 dark:bg-black">
                 <input className="dark:bg-gray-700 border-0 w-full rounded-3xl px-5 mr-5"
                        placeholder={`Message ${props.them.name ? props.them.name : props.them.number}`} value={input}
                        onChange={(event) => setInput(event.target.value)}/>
