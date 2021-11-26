@@ -23,7 +23,7 @@ export default function Sidebar(props: {
     }
 
     return (
-        <div className={"flex flex-col dark:bg-gray-900 border-r dark:border-gray-700 px-6 pt-6 w-full max-w-sm"}>
+        <div className={"flex flex-col dark:bg-black border-r dark:border-gray-700 px-6 pt-6 w-full max-w-sm"}>
             <div className={"flex flex-col mb-4"}>
                 <h3 className={"flex dark:text-white h-8 px-3"}>Chats</h3>
                 <div>
@@ -31,7 +31,7 @@ export default function Sidebar(props: {
                         <h4 className={"-mx-2 -my-6 flow-root"}>
                             <button onClick={handleClick}
                                     type={"button"}
-                                    className={"px-2 py-3 dark:bg-gray-900 bg-white w-full flex items-center justify-between text-gray-400 hover:text-gray-500"}>
+                                    className={"px-2 py-3 dark:bg-black bg-white w-full flex items-center justify-between text-gray-400 hover:text-gray-500"}>
                             <span className={"font-medium dark:text-white text-gray-900"}>
                               Channels
                             </span>
@@ -55,13 +55,13 @@ export default function Sidebar(props: {
                     </div>
                 </div>
                 <div className={"form-group form-row"}>
-                    <div className={"form-input-special"}>
-                        <input type="text" className="form-control" value={search}
-                               onChange={(e) => setSearch(() => e.target.value)}
-                               placeholder={`Search ${props.conversations.length} conversations`}/>
-                        <span className="input-left icon">
+                    <div className={"flex w-full"}>
+                        <span className="input-left icon pr-3">
                             <span aria-hidden="true" className="cm-icon cm-icon-search"/>
                         </span>
+                        <input type="text" className="dark:bg-black border dark:border-gray-700 focus:border-blue-500 dark:text-white w-full rounded-3xl px-5 mr-5 pt-1 pb-1" value={search}
+                               onChange={(e) => setSearch(() => e.target.value)}
+                               placeholder={`Search ${props.conversations.length} conversations`}/>
                     </div>
                 </div>
             </div>

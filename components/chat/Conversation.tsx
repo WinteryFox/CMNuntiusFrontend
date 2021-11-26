@@ -25,7 +25,7 @@ export default function Conversation(props: {
         <div className={`cursor-pointer select-none hover:bg-opacity-50 pr-1.5 
             ${props.active ? "border-r-2 border-blue-300" : "hover:border-r-2 hover:border-gray-200"}`}>
             <div
-                className={`flex items-center cursor-pointer select-none rounded-3xl p-3 hover:bg-opacity-50 hover:bg-white dark:hover:bg-gray-700 hover:shadow`}
+                className={`flex items-center cursor-pointer select-none rounded-3xl p-3 hover:bg-opacity-50 hover:bg-white dark:hover:bg-gray-900 hover:shadow`}
                 onClick={() => props.onSelect(props.from.number)}>
                 <Image src={props.channel as any} alt={"Logo"} width={50} height={50}/>
 
