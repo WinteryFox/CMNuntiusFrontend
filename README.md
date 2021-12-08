@@ -8,9 +8,8 @@ CMNuntiusFrontend is the frontend repository that is supposed to be interactive 
 
 It is developed by students at [Fontys University of Applied Sciences - Information & Communication Technology](https://fontys.nl).
 
-A description of CMNuntius can be found in
-[CMNuntius backend](https://github.com/WinteryFox/CMNuntiusFrontend) which is the API repository
-for CMNuntius frontend.
+A description of CMNuntius can be found in [CMNuntius backend](https://github.com/WinteryFox/CMNuntiusFrontend) which is the API repository for CMNuntius frontend.
+
 ---
 
 ## Getting Started
