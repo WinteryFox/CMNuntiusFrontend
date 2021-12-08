@@ -15,10 +15,10 @@ export default function Conversation(props: {
     onSelect: (id: string) => void
 }) {
     function renderContent(): string {
-        if (!props.content || props.content.length === 0)
-            return props.content
-        else
+        if (props.content.trim().length === 0)
             return "Sent an attachment."
+        else
+            return props.content
     }
 
     return (
