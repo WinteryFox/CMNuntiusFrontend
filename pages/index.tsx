@@ -10,6 +10,7 @@ import {MessageCreateRequest} from "../src/json/request";
 import rest from "../src/rest"
 import Image from "next/image";
 
+
 export default function Home() {
     const [active, setActive] = useState<string>("")
     const [conversations, setConversations] = useState<Map<string, Array<Message>>>(new Map([]))
