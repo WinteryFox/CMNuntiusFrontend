@@ -7,11 +7,9 @@ export default function ProfanityFilter(
         messageText: string,
         filterActive: boolean,
     }
-)
+) {
 
-{
-
-    function filterText(input: string) : string{
+    function filterText(input: string): string {
         // don't forget to remove leetspeak
         input = input.replaceAll("1", "i")
         input = input.replaceAll("!", "i")
@@ -26,12 +24,12 @@ export default function ProfanityFilter(
 
         const inputWords = input.split(" ")
         const swearWords = data
-        var output = ""
+        let output = ""
 
-        inputWords.forEach(function (word){
-            if(swearWords.includes(word.toLowerCase())){
+        inputWords.forEach(function (word) {
+            if (swearWords.includes(word.toLowerCase())) {
                 output += " *****"
-            }else{
+            } else {
                 output += " " + word
             }
         })
@@ -40,19 +38,10 @@ export default function ProfanityFilter(
     }
 
 
-    if(props.filterActive) {
-        return (
-            <div>
-                <span>{filterText(props.messageText)}</span>
-            </div>
-        )
-    }else{
-        return (
-            <div>
-                <span>{props.messageText}</span>
-            </div>
-        )
-    }
+    if (props.filterActive)
+        return (<div><span>{filterText(props.messageText)}</span></div>)
+    else
+        return (<div><span>{props.messageText}</span></div>)
 }
 
 
