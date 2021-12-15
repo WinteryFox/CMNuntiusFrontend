@@ -10,6 +10,14 @@ export default function ProfanityFilter(
 ) {
 
     function filterText(input: string): string {
+        let endsWithSpecialChar = false
+        let specialChar = null
+        if(input.endsWith("!") || input.endsWith("?") || input.endsWith(".")){
+            endsWithSpecialChar = true
+            specialChar = input.substring(input.length-1, input.length)
+            input = input.substring(0, input.length - 1);
+        }
+
         // don't forget to remove leetspeak
         input = input.replaceAll("1", "i")
         input = input.replaceAll("!", "i")
@@ -28,11 +36,18 @@ export default function ProfanityFilter(
 
         inputWords.forEach(function (word) {
             if (swearWords.includes(word.toLowerCase())) {
-                output += " *****"
+                output += " "
+                for (let i = 0; i < word.length; i++){
+                    output += "*"
+                }
             } else {
                 output += " " + word
             }
         })
+
+        if(endsWithSpecialChar){
+            output += specialChar
+        }
 
         return output;
     }

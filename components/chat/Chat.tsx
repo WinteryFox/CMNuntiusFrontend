@@ -12,7 +12,8 @@ export default function Chat(props: {
     them: From,
     channel: string,
     history: Array<Message>,
-    onMtCreate: (content: MessageCreateRequest) => void
+    onMtCreate: (content: MessageCreateRequest) => void,
+    profanityFilterActive: boolean
 }) {
     const chatEnd = createRef<HTMLDivElement>()
     const [input, setInput] = useState<string>("")
@@ -70,7 +71,7 @@ export default function Chat(props: {
             <div className="body overflow-y-auto bg-gray-50 dark:bg-black h-full">
                 <div className={"flex flex-col p-10"}>
                     {props.history.map((message) => (
-                        <ChatMessage key={message.reference} message={message} us={props.us}/>
+                        <ChatMessage key={message.reference} message={message} us={props.us} profanityFilterActive={props.profanityFilterActive}/>
                     ))}
                     <div ref={chatEnd}/>
                 </div>
