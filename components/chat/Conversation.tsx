@@ -15,10 +15,10 @@ export default function Conversation(props: {
     onSelect: (id: string) => void
 }) {
     function renderContent(): string {
-        if (!props.content || props.content.length === 0)
-            return props.content
-        else
+        if (props.content.trim().length === 0)
             return "Sent an attachment."
+        else
+            return props.content
     }
 
     return (
@@ -29,13 +29,13 @@ export default function Conversation(props: {
                 onClick={() => props.onSelect(props.from.number)}>
                 <Image src={props.channel as any} alt={"Logo"} width={50} height={50}/>
 
-                <div className={"flex flex-column ml-2 w-full overflow-hidden leading-tight"}>
+                <div className={"flex flex-col ml-2 w-full overflow-hidden leading-tight"}>
                     <div className={"flex justify-between items-center"}>
                         <p className={"text-base font-bold dark:text-white text-nowrap text-truncate"}>
                             {props.from.name ? props.from.name : props.from.number}
                         </p>
                         <time dateTime={props.time.toISOString()}
-                              className={"flex-shrink-0 dark:text-gray-200"}>{formatDate(props.time)}</time>
+                              className={"shrink-0 dark:text-gray-200"}>{formatDate(props.time)}</time>
                     </div>
 
                     <div className={"text-nowrap text-truncate dark:text-gray-200"}>
