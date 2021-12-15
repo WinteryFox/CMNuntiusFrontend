@@ -80,8 +80,8 @@ export default function Chat(props: {
                        placeholder={`Message ${props.them.name ? props.them.name : props.them.number}`} value={input}
                        onChange={(event) => setInput(event.target.value)}/>
 
-                <button className="btn btn-cta-icon" onClick={sendMessage} disabled={isSending}>
-                    <span className="cm-icon cm-icon-send" aria-hidden="true"/>
+                <button className={"flex items-center justify-center p-3 rounded-full hover:bg-[#1d9bf0] hover:bg-opacity-10 transition-bg duration-300"} onClick={sendMessage} disabled={isSending}>
+                    <i className={"fas fa-paper-plane dark:text-white"}/>
                 </button>
             </div>
         </div>

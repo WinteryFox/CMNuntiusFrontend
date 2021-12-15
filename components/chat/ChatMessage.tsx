@@ -51,7 +51,7 @@ export default function ChatMessage(props: {
 
     return (
         <div key={props.message.reference}
-             className={`flex flex-col mb-2 w-5/12 ${props.message.sender.number == props.us.number ? "align-self-end" : ""}`}>
+             className={`flex flex-col mb-2 w-5/12 ${props.message.sender.number == props.us.number ? "self-end" : ""}`}>
             {props.message.content.text.trim().length > 0 &&
                 <div
                     className={`p-5 rounded-3xl ${props.message.sender.number == props.us.number ? "bg-blue-400 dark:bg-blue-500 text-white" : "bg-gray-100 dark:bg-gray-800 text-black dark:text-white"}`}>
