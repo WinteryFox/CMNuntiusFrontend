@@ -44,7 +44,7 @@ export default function Chat(props: {
 
     return (
         <div className={"flex flex-col w-full"}>
-            <div className="flex items-center justify-between dark:bg-black p-5 border-b dark:border-gray-700">
+            <div className="flex items-center justify-between dark:bg-black p-5 border-b border-gray-200 dark:border-gray-700">
                 <div className={"flex items-center "}>
                     <Image
                         src={Channel[props.channel.toUpperCase() as keyof typeof Channel] as any}
@@ -54,18 +54,6 @@ export default function Chat(props: {
                         {props.them.number ? props.them.name : props.them.number}
                     </div>
                 </div>
-
-                <cm-context-menu>
-                    <cm-context-menu-option data-icon="edit" data-display="Edit"/>
-                    <cm-context-menu-option data-icon="duplicate" data-display="Duplicate"/>
-
-                    <cm-context-menu-option
-                        data-href="data:text/plain;charset=utf-8,this is a textual download"
-                        data-download="myfile.txt"
-                        data-icon="download"
-                        data-display="Download myfile.txt"/>
-                    <cm-context-menu-line/>
-                </cm-context-menu>
             </div>
             <div className="body overflow-y-auto bg-white dark:bg-black h-full">
                 <div className={"flex flex-col p-10"}>
@@ -75,13 +63,14 @@ export default function Chat(props: {
                     <div ref={chatEnd}/>
                 </div>
             </div>
-            <div className="flex w-full justify-center px-10 py-5 border-t dark:border-gray-700 dark:bg-black">
-                <input className="dark:bg-black border dark:border-gray-700 focus:border-blue-500 dark:text-white w-full rounded-3xl px-5 mr-5"
+            <div className="flex w-full justify-center px-10 py-5 border-t border-gray-200 dark:border-gray-700 dark:bg-black">
+                <input type={"text"}
+                       className="dark:bg-black border border-gray-300 dark:border-gray-700 focus:border-blue-500 dark:text-white w-full rounded-3xl px-5 mr-5"
                        placeholder={`Message ${props.them.name ? props.them.name : props.them.number}`} value={input}
                        onChange={(event) => setInput(event.target.value)}/>
 
-                <button className={"flex items-center justify-center p-3 rounded-full hover:bg-[#1d9bf0] hover:bg-opacity-10 transition-bg duration-300"} onClick={sendMessage} disabled={isSending}>
-                    <i className={"fas fa-paper-plane dark:text-white"}/>
+                <button className={"flex items-center justify-center p-3 rounded-full hover:bg-blue-400 hover:bg-opacity-10 hover:dark:bg-opacity-20 transition-bg duration-200"} onClick={sendMessage} disabled={isSending}>
+                    <i className={"fas fa-paper-plane text-blue-500"}/>
                 </button>
             </div>
         </div>

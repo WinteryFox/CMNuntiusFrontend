@@ -38,7 +38,7 @@ export default function Conversation(props: {
                               className={"shrink-0 dark:text-gray-200"}>{formatDate(props.time)}</time>
                     </div>
 
-                    <div className={"text-nowrap text-truncate dark:text-gray-200"}>
+                    <div className={"text-nowrap text-truncate text-gray-700 dark:text-gray-200"}>
                         {renderContent()}
                     </div>
                 </div>
