@@ -20,6 +20,8 @@ export default function Markdown(props: {
                             return <input type={node.type}/>
                     }
                 },
+                blockquote: (node) => <blockquote className={"border-l-4 pl-2 text-gray-200"}>{node.children}</blockquote>,
+                strong: (node) => <strong className={"underline"}>{node.children}</strong>,
                 ol: (node) => <ol className={"list-disc list-inside"} role={"list"}>{node.children}</ol>,
                 ul: (node) => <ul className={"list-disc list-inside"} role={"list"}>{node.children}</ul>,
                 h1: (node) => <h1 className={"text-3xl font-semibold"}>{node.children}</h1>,
