@@ -1,4 +1,4 @@
-import '../styles/globals.sass'
+import '../styles/globals.css'
 import type {AppProps} from 'next/app'
 import Script from "next/script";
 import React from "react";
