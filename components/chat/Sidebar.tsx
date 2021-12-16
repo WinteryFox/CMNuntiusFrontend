@@ -91,7 +91,8 @@ export default function Sidebar(props: {
                         </div> :
                         filterConversations().map((conversation) => (
                             <div key={conversation.from.number} className={"mb-1"}>
-                                <Conversation channel={conversation.channel}
+                                <Conversation filterProfanity={props.showProfanity}
+                                              channel={conversation.channel}
                                               from={conversation.from}
                                               content={conversation.lastMessage} time={conversation.date}
                                               onSelect={props.onSelect}

@@ -13,13 +13,19 @@ export default function Conversation(props: {
     content: string,
     time: Date,
     active: boolean,
+    filterProfanity: boolean,
     onSelect: (id: string) => void
 }) {
     function renderContent(): string {
-        if (props.content.trim().length === 0)
+        if (props.content.trim().length === 0) {
             return "Sent an attachment."
-        else
-            return filterProfanity(props.content, false)
+        } else {
+            if (props.filterProfanity) {
+                return filterProfanity(props.content, false)
+            } else {
+                return props.content
+            }
+        }
     }
 
     return (
