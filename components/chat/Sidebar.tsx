@@ -29,21 +29,18 @@ export default function Sidebar(props: {
     }
 
     return (
-        <div className={"flex flex-col dark:bg-black border-r border-gray-200 dark:border-gray-700 px-6 pt-6 w-full max-w-sm"}>
+        <div
+            className={"flex flex-col dark:bg-black border-r border-gray-200 dark:border-gray-700 px-6 pt-6 w-full max-w-sm"}>
             <div className={"flex flex-col mb-4"}>
                 <h3 className={"flex text-xl font-semibold dark:text-white h-8 px-3"}>Chats</h3>
                 <div>
                     <div className={"border-t border-gray-200 dark:border-gray-700 px-4 py-6"}>
                         <h4 className={"-mx-2 -my-6 flow-root"}>
-                            <div className={"flex items-center justify-between px-2 font-medium dark:text-white text-gray-900"}>
-                                Profanity Filter
-                                <Checkbox checked={props.showProfanity} onChange={props.handleProfanityClick}/>
-                            </div>
                             <button onClick={handleClick}
                                     type={"button"}
                                     className={"px-2 py-3 dark:bg-black bg-white w-full flex items-center justify-between text-gray-400 hover:text-gray-500"}>
                                 <div className={"font-medium dark:text-white text-gray-900"}>
-                                    Channels
+                                    Filters
                                 </div>
                                 <div className={"ml-6 flex items-center"}>
                                     {showOptions ?
@@ -56,6 +53,14 @@ export default function Sidebar(props: {
                         </h4>
                         {showOptions &&
                             <div className={"flex flex-col pt-6 dark:text-white"}>
+                                <Checkbox checked={props.showProfanity} onChange={props.handleProfanityClick}>
+                                    Profanity Filter
+                                </Checkbox>
+
+                                <div className={"mt-2 mb-1 pb-1 font-bold border-b"}>
+                                    Channels
+                                </div>
+
                                 <Checkbox checked={twitter} onChange={(e) => setTwitter(e.target.checked)}>
                                     Twitter
                                 </Checkbox>
