@@ -8,7 +8,9 @@ import Checkbox from "../Checkbox";
 export default function Sidebar(props: {
     conversations: Array<MessageSnapshot>,
     selected: string,
-    onSelect: (id: string) => void
+    onSelect: (id: string) => void,
+    handleProfanityClick: () => void,
+    showProfanity: boolean
 }) {
     const [search, setSearch] = useState<string>("")
     const [showOptions, setShowOptions] = useState(false)
@@ -33,6 +35,20 @@ export default function Sidebar(props: {
                 <div>
                     <div className={"border-t dark:border-gray-700 px-4 py-6"}>
                         <h4 className={"-mx-2 -my-6 flow-root"}>
+                            <button onClick={props.handleProfanityClick}
+                                    type={"button"}
+                                    className={"px-2 py-3 dark:bg-black bg-white w-full flex items-center justify-between text-gray-400 hover:text-gray-500"}>
+                            <span className={"font-medium dark:text-white text-gray-900"}>
+                              Profanity Filter
+                            </span>
+                                <span className={"ml-6 flex items-center"}>
+                                {props.showProfanity ?
+                                    <i className="fas fa-toggle-on"/>
+                                    :
+                                    <i className="fas fa-toggle-off"/>
+                                }
+                                </span>
+                            </button>
                             <button onClick={handleClick}
                                     type={"button"}
                                     className={"px-2 py-3 dark:bg-black bg-white w-full flex items-center justify-between text-gray-400 hover:text-gray-500"}>

@@ -10,6 +10,7 @@ import {MessageCreateRequest} from "../src/json/request";
 import rest from "../src/rest"
 import Image from "next/image";
 
+
 export default function Home() {
     const [active, setActive] = useState<string>("")
     const [conversations, setConversations] = useState<Map<string, Array<Message>>>(new Map([]))
@@ -134,6 +135,12 @@ export default function Home() {
         return () => source.close()
     })
 
+    const [showProfanity, setShowProfanity] = useState(false);
+
+    function handleProfanityClick():void {
+        setShowProfanity(!showProfanity)
+    }
+
     return (
         <div className={"flex h-full"}>
             <Head>
@@ -142,11 +149,12 @@ export default function Home() {
             </Head>
             <Sidebar
                 conversations={[...conversations.entries()].map(([us, messages]) => determineLatest(us, messages)).sort((v1, v2) => v1.date > v2.date ? -1 : 1)}
-                onSelect={(id) => setActive(() => id)} selected={active}/>
+                onSelect={(id) => setActive(() => id)} selected={active} handleProfanityClick={handleProfanityClick} showProfanity={showProfanity}/>
             {active ?
                 <Chat us={conversations.get(active)![0].recipient} them={conversations.get(active)![0].sender}
                       channel={conversations.get(active)![0].channel}
-                      history={conversations.get(active)!} onMtCreate={createMessage}/>
+                      history={conversations.get(active)!} onMtCreate={createMessage}
+                profanityFilterActive={showProfanity}/>
                 :
                 <div className={"flex items-center justify-center dark:bg-black h-full w-full"}>
                     <div className={"flex flex-col"}>

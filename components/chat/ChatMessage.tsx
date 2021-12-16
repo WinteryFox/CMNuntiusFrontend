@@ -3,11 +3,13 @@ import {formatDate} from "../../src/json/response";
 import React, {ReactNode} from "react";
 import Image from "next/image"
 import {Message, To} from "../../src/json/message";
+import filterProfanity from "../../src/profanityfilter";
 import Markdown from "../Markdown";
 
 export default function ChatMessage(props: {
     message: Message,
-    us: To
+    us: To,
+    profanityFilterActive: boolean,
 }) {
     function getAttachmentUrl(): string {
         if (!props.message.content.media)
@@ -56,7 +58,7 @@ export default function ChatMessage(props: {
                 <div
                     className={`p-5 rounded-3xl ${props.message.sender.number == props.us.number ? "bg-blue-400 dark:bg-blue-500 text-white" : "bg-gray-100 dark:bg-gray-800 text-black dark:text-white"}`}>
                     <Markdown>
-                        {props.message.content.text}
+                        {props.profanityFilterActive ? filterProfanity(props.message.content.text) : props.message.content.text}
                     </Markdown>
                 </div>}
 
