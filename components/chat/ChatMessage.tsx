@@ -3,7 +3,7 @@ import {formatDate} from "../../src/json/response";
 import React, {ReactNode} from "react";
 import Image from "next/image"
 import {Message, To} from "../../src/json/message";
-import ProfanityFilter from "../ProfanityFilter";
+import filterProfanity from "../../src/profanityfilter";
 
 export default function ChatMessage(props: {
     message: Message,
@@ -55,7 +55,7 @@ export default function ChatMessage(props: {
              className={`flex flex-col mb-2 w-2/5 ${props.message.sender.number == props.us.number ? "align-self-end" : ""}`}>
             <div
                 className={`bg-white dark:text-white p-5 rounded-3xl text-black ${props.message.sender.number == props.us.number ? "bg-blue-400" : "dark:bg-gray-800"}`}>
-                <ProfanityFilter messageText={props.message.content.text} filterActive={props.profanityFilterActive}/>
+                {props.profanityFilterActive ? filterProfanity(props.message.content.text) : props.message.content.text}
                 {props.message.content.media && props.message.content.media.mediaUri &&
                 <div className={`block max-w-[256px] max-h-[256px] rounded-3xl`}>
                     <a href={getAttachmentUrl()} target={"_blank"} rel={"noreferrer"} download>
