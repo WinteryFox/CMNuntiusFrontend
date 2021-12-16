@@ -1,11 +1,16 @@
-import {ChangeEvent} from "react";
+import {ChangeEvent, ReactNode} from "react";
 
 export default function Checkbox(props: {
-    value?: boolean | undefined,
+    checked?: boolean | undefined,
     disabled?: boolean | undefined,
-    onChange?: (event: ChangeEvent<HTMLInputElement>) => void
+    onChange?: (event: ChangeEvent<HTMLInputElement>) => void,
+    children?: ReactNode
 }) {
     return (
-        <input type={"checkbox"} checked={props.value} onChange={props.onChange} disabled={props.disabled} className={"rounded checked:bg-pink-500"}/>
+        <label className={"flex items-center justify-between"}>
+            {props.children}
+            <input type={"checkbox"} checked={props.checked} onChange={props.onChange} disabled={props.disabled}
+                   className={"rounded checked:bg-pink-500"}/>
+        </label>
     )
 }

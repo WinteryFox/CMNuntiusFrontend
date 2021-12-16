@@ -35,9 +35,9 @@ export default function Sidebar(props: {
                 <div>
                     <div className={"border-t dark:border-gray-700 px-4 py-6"}>
                         <h4 className={"-mx-2 -my-6 flow-root"}>
-                            <div className={"flex items-center justify-between font-medium dark:text-white text-gray-900"}>
+                            <div className={"flex items-center justify-between px-2 font-medium dark:text-white text-gray-900"}>
                                 Profanity Filter
-                                <Checkbox value={props.showProfanity} onChange={props.handleProfanityClick}/>
+                                <Checkbox checked={props.showProfanity} onChange={props.handleProfanityClick}/>
                             </div>
                             <button onClick={handleClick}
                                     type={"button"}
@@ -55,15 +55,19 @@ export default function Sidebar(props: {
                             </button>
                         </h4>
                         {showOptions &&
-                            <div className={"pt-6 dark:text-white"}>
-                                <Checkbox selected={twitter} onChange={(e) => setTwitter(e.target.checked)}
-                                          label={"Twitter"}/>
-                                <Checkbox selected={facebook} onChange={(e) => setFacebook(e.target.checked)}
-                                          label={"Facebook Messenger"}/>
-                                <Checkbox selected={instagram} onChange={(e) => setInstagram(e.target.checked)}
-                                          label={"Instagram Messaging"}/>
-                                <Checkbox selected={whatsApp} onChange={(e) => setWhatsApp(e.target.checked)}
-                                          label={"WhatsApp Business"}/>
+                            <div className={"flex flex-col pt-6 dark:text-white"}>
+                                <Checkbox checked={twitter} onChange={(e) => setTwitter(e.target.checked)}>
+                                    Twitter
+                                </Checkbox>
+                                <Checkbox checked={facebook} onChange={(e) => setFacebook(e.target.checked)}>
+                                    Facebook
+                                </Checkbox>
+                                <Checkbox checked={instagram} onChange={(e) => setInstagram(e.target.checked)}>
+                                    Instagram Messenger
+                                </Checkbox>
+                                <Checkbox checked={whatsApp} onChange={(e) => setWhatsApp(e.target.checked)}>
+                                    WhatsApp Business
+                                </Checkbox>
                             </div>
                         }
                     </div>
