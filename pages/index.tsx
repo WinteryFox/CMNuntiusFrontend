@@ -138,7 +138,6 @@ export default function Home() {
     const [showProfanity, setShowProfanity] = useState(false);
 
     function handleProfanityClick() {
-        console.log(showProfanity)
         setShowProfanity(!showProfanity)
     }
 
