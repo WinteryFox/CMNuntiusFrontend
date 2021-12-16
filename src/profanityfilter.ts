@@ -1,46 +1,37 @@
 import swearWords from "../resources/SwearWords.json"
 
+function removeLeetspeak(input: string): string {
+    let output = input.replaceAll("1", "i")
+        .replaceAll("!", "i")
+        .replaceAll("3", "e")
+        .replaceAll("4", "a")
+        .replaceAll("@", "a")
+        .replaceAll("5", "s")
+        .replaceAll("7", "t")
+        .replaceAll("0", "o")
+        .replaceAll("9", "g")
+        .replaceAll("$", "s")
+
+    if (output.endsWith("!") || output.endsWith("?") || output.endsWith("."))
+        output.substring(0, input.length - 1)
+
+    return output
+}
+
 export default function filterProfanity(input: string, escape: boolean): string {
-    let endsWithSpecialChar = false
-    let specialChar = null
-    if (input.endsWith("!") || input.endsWith("?") || input.endsWith(".")) {
-        endsWithSpecialChar = true
-        specialChar = input.substring(input.length - 1, input.length)
-        input = input.substring(0, input.length - 1);
-    }
-
-    // don't forget to remove leetspeak
-    input = input.replaceAll("1", "i")
-    input = input.replaceAll("!", "i")
-    input = input.replaceAll("3", "e")
-    input = input.replaceAll("4", "a")
-    input = input.replaceAll("@", "a")
-    input = input.replaceAll("5", "s")
-    input = input.replaceAll("7", "t")
-    input = input.replaceAll("0", "o")
-    input = input.replaceAll("9", "g")
-    input = input.replaceAll("$", "s")
-
-    const inputWords = input.split(" ")
-    let output = ""
-
-    inputWords.forEach(function (word) {
-        if (swearWords.includes(word.toLowerCase())) {
-            output += " "
-            for (let i = 0; i < word.length; i++) {
-                if (escape)
-                    output += "\\*"
-                else
-                    output += "*"
+    return input.split(" ")
+        .map((value) => {
+            const trimmed = removeLeetspeak(value.toLowerCase()).trim()
+            if (swearWords.includes(trimmed)) {
+                console.log("yes")
+                if (escape) {
+                    return "\\*".repeat(value.length)
+                } else {
+                    return "*".repeat(value.length)
+                }
+            } else {
+                return value
             }
-        } else {
-            output += " " + word
-        }
-    })
-
-    if (endsWithSpecialChar) {
-        output += specialChar
-    }
-
-    return output;
+        })
+        .join(" ")
 }
