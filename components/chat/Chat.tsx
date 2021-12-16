@@ -47,7 +47,7 @@ export default function Chat(props: {
             <div className="flex items-center justify-between dark:bg-black p-5 border-b border-gray-200 dark:border-gray-700">
                 <div className={"flex items-center "}>
                     <Image
-                        src={Channel[props.channel.toUpperCase() as keyof typeof Channel] as any}
+                        src={Channel[props.channel.toUpperCase().replace(" ", "_") as keyof typeof Channel] as any}
                         alt={"channel"} width={30} height={30}/>
 
                     <div className={"ml-2 text-xl font-bold text-nowrap text-truncate dark:text-white"}>
