@@ -137,7 +137,8 @@ export default function Home() {
 
     const [showProfanity, setShowProfanity] = useState(false);
 
-    function handleProfanityClick():void {
+    function handleProfanityClick() {
+        console.log(showProfanity)
         setShowProfanity(!showProfanity)
     }
 
@@ -149,12 +150,13 @@ export default function Home() {
             </Head>
             <Sidebar
                 conversations={[...conversations.entries()].map(([us, messages]) => determineLatest(us, messages)).sort((v1, v2) => v1.date > v2.date ? -1 : 1)}
-                onSelect={(id) => setActive(() => id)} selected={active} handleProfanityClick={handleProfanityClick} showProfanity={showProfanity}/>
+                onSelect={(id) => setActive(() => id)} selected={active} handleProfanityClick={handleProfanityClick}
+                showProfanity={showProfanity}/>
             {active ?
                 <Chat us={conversations.get(active)![0].recipient} them={conversations.get(active)![0].sender}
                       channel={conversations.get(active)![0].channel}
                       history={conversations.get(active)!} onMtCreate={createMessage}
-                profanityFilterActive={showProfanity}/>
+                      profanityFilterActive={showProfanity}/>
                 :
                 <div className={"flex items-center justify-center dark:bg-black h-full w-full"}>
                     <div className={"flex flex-col"}>

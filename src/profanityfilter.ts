@@ -28,7 +28,7 @@ export default function filterProfanity(input: string): string {
         if (swearWords.includes(word.toLowerCase())) {
             output += " "
             for (let i = 0; i < word.length; i++){
-                output += "*"
+                output += "\\*"
             }
         } else {
             output += " " + word

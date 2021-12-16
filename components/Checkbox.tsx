@@ -1,15 +1,11 @@
-import React, {ChangeEventHandler} from 'react';
+import {ChangeEvent} from "react";
 
 export default function Checkbox(props: {
-    selected?: boolean
-    onChange?: ChangeEventHandler<HTMLInputElement>
-    label?: string
+    value?: boolean | undefined,
+    disabled?: boolean | undefined,
+    onChange?: (event: ChangeEvent<HTMLInputElement>) => void
 }) {
     return (
-        <label className={"flex items-center select-none cursor-pointer"}>
-            <input type="checkbox" checked={props.selected} onChange={props.onChange}
-                   className={"inline-block mr-2 bg-black appearance-none text-blue-500 w-4 h-4 border rounded-3xl checked:bg-blue-500"}/>
-            {props.label}
-        </label>
-    );
+        <input type={"checkbox"} checked={props.value} onChange={props.onChange} disabled={props.disabled} className={"rounded checked:bg-pink-500"}/>
+    )
 }
