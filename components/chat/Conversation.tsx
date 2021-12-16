@@ -3,6 +3,7 @@ import Image from "next/image";
 import {Channel} from "../../src/channel"
 import {From} from "../../src/json/message";
 import {formatDate} from "../../src/json/response";
+import filterProfanity from "../../src/profanityfilter";
 
 //TODO: Time persistent counting to last msg (10s ago, yesterday, full date)
 
@@ -18,7 +19,7 @@ export default function Conversation(props: {
         if (props.content.trim().length === 0)
             return "Sent an attachment."
         else
-            return props.content
+            return filterProfanity(props.content, false)
     }
 
     return (

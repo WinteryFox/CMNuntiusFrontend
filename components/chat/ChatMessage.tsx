@@ -58,7 +58,7 @@ export default function ChatMessage(props: {
                 <div
                     className={`p-5 rounded-3xl ${props.message.sender.number == props.us.number ? "bg-blue-400 dark:bg-blue-500 text-white" : "bg-gray-100 dark:bg-gray-800 text-black dark:text-white"}`}>
                     <Markdown>
-                        {props.profanityFilterActive ? filterProfanity(props.message.content.text) : props.message.content.text}
+                        {props.profanityFilterActive ? filterProfanity(props.message.content.text, true) : props.message.content.text}
                     </Markdown>
                 </div>}
 

@@ -21,8 +21,6 @@ export default function Chat(props: {
     const [isSending, setSending] = useState<boolean>(false)
 
     async function sendMessage() {
-        event.preventDefault()
-
         if (!input)
             return
 

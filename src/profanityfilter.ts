@@ -1,11 +1,11 @@
 import swearWords from "../resources/SwearWords.json"
 
-export default function filterProfanity(input: string): string {
+export default function filterProfanity(input: string, escape: boolean): string {
     let endsWithSpecialChar = false
     let specialChar = null
-    if(input.endsWith("!") || input.endsWith("?") || input.endsWith(".")){
+    if (input.endsWith("!") || input.endsWith("?") || input.endsWith(".")) {
         endsWithSpecialChar = true
-        specialChar = input.substring(input.length-1, input.length)
+        specialChar = input.substring(input.length - 1, input.length)
         input = input.substring(0, input.length - 1);
     }
 
@@ -27,15 +27,18 @@ export default function filterProfanity(input: string): string {
     inputWords.forEach(function (word) {
         if (swearWords.includes(word.toLowerCase())) {
             output += " "
-            for (let i = 0; i < word.length; i++){
-                output += "\\*"
+            for (let i = 0; i < word.length; i++) {
+                if (escape)
+                    output += "\\*"
+                else
+                    output += "*"
             }
         } else {
             output += " " + word
         }
     })
 
-    if(endsWithSpecialChar){
+    if (endsWithSpecialChar) {
         output += specialChar
     }
 
