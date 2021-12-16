@@ -4,6 +4,7 @@ import React, {ReactNode} from "react";
 import Image from "next/image"
 import {Message, To} from "../../src/json/message";
 import filterProfanity from "../../src/profanityfilter";
+import Markdown from "../Markdown";
 
 export default function ChatMessage(props: {
     message: Message,
@@ -52,17 +53,21 @@ export default function ChatMessage(props: {
 
     return (
         <div key={props.message.reference}
-             className={`flex flex-col mb-2 w-2/5 ${props.message.sender.number == props.us.number ? "align-self-end" : ""}`}>
-            <div
-                className={`bg-white dark:text-white p-5 rounded-3xl text-black ${props.message.sender.number == props.us.number ? "bg-blue-400" : "dark:bg-gray-800"}`}>
-                {props.profanityFilterActive ? filterProfanity(props.message.content.text) : props.message.content.text}
-                {props.message.content.media && props.message.content.media.mediaUri &&
+             className={`flex flex-col mb-2 w-5/12 ${props.message.sender.number == props.us.number ? "self-end" : ""}`}>
+            {props.message.content.text.trim().length > 0 &&
+                <div
+                    className={`p-5 rounded-3xl ${props.message.sender.number == props.us.number ? "bg-blue-400 dark:bg-blue-500 text-white" : "bg-gray-100 dark:bg-gray-800 text-black dark:text-white"}`}>
+                    <Markdown>
+                        {props.profanityFilterActive ? filterProfanity(props.message.content.text) : props.message.content.text}
+                    </Markdown>
+                </div>}
+
+            {props.message.content.media && props.message.content.media.mediaUri &&
                 <div className={`block max-w-[256px] max-h-[256px] rounded-3xl`}>
                     <a href={getAttachmentUrl()} target={"_blank"} rel={"noreferrer"} download>
                         {renderAttachment()}
                     </a>
                 </div>}
-            </div>
 
             {props.message.sender.number != props.us.number ?
                 <div className={"flex mt-0.5 items-center justify-between dark:text-white"}>
@@ -80,15 +85,15 @@ export default function ChatMessage(props: {
                         {formatDate(props.message.time)}
                     </time>
                     {props.message.status == 0 &&
-                    <i className={"fas fa-spinner animate-spin w-16px"} title={"Accepted"}/>}
+                        <i className={"fas fa-spinner animate-spin w-16px"} title={"Accepted"}/>}
                     {props.message.status == 1 &&
-                    <i className={"fas fa-times text-red-400"} title={"Rejected"}/>}
+                        <i className={"fas fa-times text-red-400"} title={"Rejected"}/>}
                     {props.message.status == 2 &&
-                    <i className={"fas fa-check"} title={"Sent"}/>}
+                        <i className={"fas fa-check"} title={"Sent"}/>}
                     {props.message.status == 3 &&
-                    <i className={"fas fa-times-circle text-red-400"} title={"Failed"}/>}
+                        <i className={"fas fa-times-circle text-red-400"} title={"Failed"}/>}
                     {props.message.status == 4 &&
-                    <i className={"fas fa-check text-blue-400"} title={"Read"}/>}
+                        <i className={"fas fa-check text-blue-400"} title={"Read"}/>}
                 </div>
             }
         </div>

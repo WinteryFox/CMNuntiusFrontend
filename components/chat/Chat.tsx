@@ -68,7 +68,7 @@ export default function Chat(props: {
                     <cm-context-menu-line/>
                 </cm-context-menu>
             </div>
-            <div className="body overflow-y-auto bg-gray-50 dark:bg-black h-full">
+            <div className="body overflow-y-auto bg-white dark:bg-black h-full">
                 <div className={"flex flex-col p-10"}>
                     {props.history.map((message) => (
                         <ChatMessage key={message.reference} message={message} us={props.us} profanityFilterActive={props.profanityFilterActive}/>
@@ -76,13 +76,13 @@ export default function Chat(props: {
                     <div ref={chatEnd}/>
                 </div>
             </div>
-            <div className="flex w-full justify-center px-10 py-5 bg-gray-50 border-t dark:border-gray-700 dark:bg-black">
+            <div className="flex w-full justify-center px-10 py-5 border-t dark:border-gray-700 dark:bg-black">
                 <input className="dark:bg-black border dark:border-gray-700 focus:border-blue-500 dark:text-white w-full rounded-3xl px-5 mr-5"
                        placeholder={`Message ${props.them.name ? props.them.name : props.them.number}`} value={input}
                        onChange={(event) => setInput(event.target.value)}/>
 
-                <button className="btn btn-cta-icon" onClick={sendMessage} disabled={isSending}>
-                    <span className="cm-icon cm-icon-send" aria-hidden="true"/>
+                <button className={"flex items-center justify-center p-3 rounded-full hover:bg-[#1d9bf0] hover:bg-opacity-10 transition-bg duration-300"} onClick={sendMessage} disabled={isSending}>
+                    <i className={"fas fa-paper-plane dark:text-white"}/>
                 </button>
             </div>
         </div>
