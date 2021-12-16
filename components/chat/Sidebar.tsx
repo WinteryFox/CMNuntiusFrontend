@@ -29,11 +29,11 @@ export default function Sidebar(props: {
     }
 
     return (
-        <div className={"flex flex-col dark:bg-black border-r dark:border-gray-700 px-6 pt-6 w-full max-w-sm"}>
+        <div className={"flex flex-col dark:bg-black border-r border-gray-200 dark:border-gray-700 px-6 pt-6 w-full max-w-sm"}>
             <div className={"flex flex-col mb-4"}>
-                <h3 className={"flex dark:text-white h-8 px-3"}>Chats</h3>
+                <h3 className={"flex text-xl font-semibold dark:text-white h-8 px-3"}>Chats</h3>
                 <div>
-                    <div className={"border-t dark:border-gray-700 px-4 py-6"}>
+                    <div className={"border-t border-gray-200 dark:border-gray-700 px-4 py-6"}>
                         <h4 className={"-mx-2 -my-6 flow-root"}>
                             <div className={"flex items-center justify-between px-2 font-medium dark:text-white text-gray-900"}>
                                 Profanity Filter
@@ -71,20 +71,20 @@ export default function Sidebar(props: {
                             </div>
                         }
                     </div>
-                    <div className={"form-group form-row"}>
+                    <div className={"form-group form-row pb-3"}>
                         <div className={"flex w-full"}>
                             <span className="input-left icon pr-3">
                                 <span aria-hidden="true" className="cm-icon cm-icon-search"/>
                             </span>
                             <input type="text"
-                                   className="dark:bg-black border dark:border-gray-700 focus:border-blue-500 dark:text-white w-full rounded-3xl px-5 mr-5 pt-1 pb-1"
+                                   className="dark:bg-black border border-gray-300 dark:border-gray-700 focus:border-blue-500 dark:text-white w-full rounded-3xl px-5 mr-5 pt-1 pb-1"
                                    value={search}
                                    onChange={(e) => setSearch(() => e.target.value)}
                                    placeholder={`Search ${props.conversations.length} conversations`}/>
                         </div>
                     </div>
                 </div>
-                <div className={"flex flex-col p-1 overflow-y-auto h-full dark:border-gray-700"}>
+                <div className={"flex flex-col p-1 overflow-y-auto max-h-fit dark:border-gray-700"}>
                     {filterConversations().length == 0 ?
                         <div className={"flex items-center justify-center dark:text-gray-400 h-full"}>
                             No conversations to show

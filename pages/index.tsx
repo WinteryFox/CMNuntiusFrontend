@@ -22,13 +22,14 @@ export default function Home() {
 
         return {
             from: message.sender,
-            channel: Channel[message.channel.toUpperCase() as keyof typeof Channel],
+            channel: Channel[message.channel.toUpperCase().replace(" ", "_") as keyof typeof Channel],
             lastMessage: message.content.text,
             date: new Date(message.time)
         }
     }
 
     function updateConversation(conversation: string, message: Message) {
+        console.log(message.channel)
         const map = new Map(conversations)
         map.set(
             conversation,
