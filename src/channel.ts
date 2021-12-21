@@ -7,6 +7,7 @@ import Telegram from "../resources/telegram.svg"
 import WeChat from "../resources/wechat.svg"
 import Line from "../resources/line.svg"
 import FacebookMessenger from "../resources/messenger.svg"
+import Instagram from "../resources/instagram.svg"
 
 export enum Channel {
     TWITTER = Twitter,
@@ -17,5 +18,6 @@ export enum Channel {
     TELEGRAM = Telegram,
     LINE = Line,
     WECHAT = WeChat,
-    FACEBOOK_MESSENGER = FacebookMessenger
+    FACEBOOK_MESSENGER = FacebookMessenger,
+    INSTAGRAM = Instagram
 }

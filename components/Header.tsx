@@ -16,17 +16,21 @@ export default function Header() {
                     </a>
                 </Link>
 
-                <div className={"flex text-white"}>
-                    <Link href={"/"} locale={"en"}>
-                        <a className={"mr-2"}>
-                            English
-                        </a>
-                    </Link>
-                    <Link href={"/"} locale={"ja"}>
-                        <a>
-                            日本語
-                        </a>
-                    </Link>
+                <div className={"flex dark:text-white"}>
+                    <div className={"border-r border-gray-300 dark:border-gray-500"}>
+                        <Link href={"/"} locale={"en"}>
+                            <a className={"mr-2 hover:text-blue-600"}>
+                                English
+                            </a>
+                        </Link>
+                    </div>
+                    <div className={"pl-2"}>
+                        <Link href={"/"} locale={"ja"}>
+                            <a className={"hover:text-blue-600"}>
+                                日本語
+                            </a>
+                        </Link>
+                    </div>
                 </div>
             </nav>
         </header>

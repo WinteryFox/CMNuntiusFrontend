@@ -29,20 +29,20 @@ export default function Sidebar(props: {
 
     useEffect(() => setFilteredConversations(
             () => {
-                let r = props.conversations.filter((v) => v.from.name?.toLowerCase()?.match(search))
+                let conversations = props.conversations.filter((v) => v.from.name?.toLowerCase()?.match(search))
 
                 if (!twitter)
-                    r = r.filter(v => v.channel != Channel.TWITTER)
+                    conversations = conversations.filter(v => v.channel != Channel.TWITTER)
                 if (!facebook)
-                    r = r.filter(v => v.channel != Channel.FACEBOOK_MESSENGER)
-                /*if (instagram)
-                    r = r.filter(v => v.channel == Channel.INSTAGRAM_MESSENGER) TODO*/
+                    conversations = conversations.filter(v => v.channel != Channel.FACEBOOK_MESSENGER)
+                if (!instagram)
+                    conversations = conversations.filter(v => v.channel != Channel.INSTAGRAM)
                 if (!whatsApp)
-                    r = r.filter(v => v.channel != Channel.WHATSAPP_BUSINESS)
+                    conversations = conversations.filter(v => v.channel != Channel.WHATSAPP_BUSINESS)
 
-                return r
+                return conversations
             }),
-        [facebook, props.conversations, search, twitter, whatsApp])
+        [facebook, instagram, props.conversations, search, twitter, whatsApp])
 
     return (
         <div
@@ -73,7 +73,7 @@ export default function Sidebar(props: {
                                     {t("profanity-filter")}
                                 </Checkbox>
 
-                                <div className={"mt-2 mb-1 pb-1 font-bold border-b"}>
+                                <div className={"mt-2 mb-1 pb-1 font-bold border-b border-gray-200 dark:border-gray-700"}>
                                     {t("channels")}
                                 </div>
 
@@ -84,7 +84,7 @@ export default function Sidebar(props: {
                                     Facebook
                                 </Checkbox>
                                 <Checkbox checked={instagram} onChange={(e) => setInstagram(e.target.checked)}>
-                                    Instagram Messenger
+                                    Instagram Messaging
                                 </Checkbox>
                                 <Checkbox checked={whatsApp} onChange={(e) => setWhatsApp(e.target.checked)}>
                                     WhatsApp Business
