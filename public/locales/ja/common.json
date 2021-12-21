@@ -6,7 +6,7 @@
   "filters": "フィルター",
   "profanity-filter": "安全フィルター",
   "channels": "チャンネル",
-  "search-conversations": "{{count}}個トークを探索",
+  "search-conversations": "{{count}}個トークを検索",
   "no-conversations": "トークがおりません",
   "message-someone": "{{name}}へメッセージを送信",
   "accepted": "了解済み",
