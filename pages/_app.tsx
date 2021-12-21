@@ -2,9 +2,11 @@ import '../styles/globals.css'
 import type {AppProps} from 'next/app'
 import Script from "next/script";
 import React from "react";
-import Header from "../components/header";
+import Header from "../components/Header";
+import nextI18NextConfig from '../next-i18next.config';
+import {appWithTranslation} from "next-i18next";
 
-export default function Nuntius({Component, pageProps}: AppProps) {
+function Nuntius({Component, pageProps}: AppProps) {
     return (
         <div>
             <div className={"flex flex-col h-screen"}>
@@ -18,3 +20,5 @@ export default function Nuntius({Component, pageProps}: AppProps) {
         </div>
     )
 }
+
+export default appWithTranslation(Nuntius, nextI18NextConfig)

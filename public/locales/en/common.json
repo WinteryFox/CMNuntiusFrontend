@@ -1,0 +1,17 @@
+{
+  "title": "Messaging Platform - Nuntius",
+  "dashboard": "Dashboard",
+  "chats": "Chats",
+  "nothing-to-show": "No conversation selected",
+  "filters": "Filters",
+  "profanity-filter": "Profanity filter",
+  "channels": "Channels",
+  "search-conversations": "Search {{count}} conversations",
+  "no-conversations": "No conversations to show",
+  "message-someone": "Message {{name}}",
+  "accepted": "Accepted",
+  "rejected": "Rejected",
+  "sent": "Sent",
+  "failed": "Failed",
+  "read": "Read"
+}

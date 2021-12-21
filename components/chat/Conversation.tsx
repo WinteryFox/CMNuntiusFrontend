@@ -4,6 +4,7 @@ import {Channel} from "../../src/channel"
 import {From} from "../../src/json/message";
 import {formatDate} from "../../src/json/response";
 import filterProfanity from "../../src/profanityfilter";
+import {useTranslation} from "next-i18next";
 
 //TODO: Time persistent counting to last msg (10s ago, yesterday, full date)
 
@@ -16,6 +17,8 @@ export default function Conversation(props: {
     filterProfanity: boolean,
     onSelect: (id: string) => void
 }) {
+    const {i18n} = useTranslation()
+
     function renderContent(): string {
         if (props.content.trim().length === 0) {
             return "Sent an attachment."
@@ -42,7 +45,7 @@ export default function Conversation(props: {
                             {props.from.name ? props.from.name : props.from.number}
                         </p>
                         <time dateTime={props.time.toISOString()}
-                              className={"shrink-0 dark:text-gray-200"}>{formatDate(props.time)}</time>
+                              className={"shrink-0 dark:text-gray-200"}>{formatDate(i18n.language, props.time)}</time>
                     </div>
 
                     <div className={"text-nowrap text-truncate text-gray-700 dark:text-gray-200"}>

@@ -9,9 +9,20 @@ import {MtCreateResponse, ServerSentEvent, StatusReport} from "../src/json/respo
 import {MessageCreateRequest} from "../src/json/request";
 import rest from "../src/rest"
 import Image from "next/image";
+import {serverSideTranslations} from "next-i18next/serverSideTranslations";
+import {GetStaticProps} from "next";
+import {useTranslation} from "next-i18next";
 
+export const getStaticProps: GetStaticProps = async (context) => {
+    return {
+        props: {
+            ...(await serverSideTranslations(context.locale!))
+        }
+    }
+}
 
 export default function Home() {
+    const {t} = useTranslation()
     const [active, setActive] = useState<string>("")
     const [conversations, setConversations] = useState<Map<string, Array<Message>>>(new Map([]))
 
@@ -145,7 +156,7 @@ export default function Home() {
     return (
         <div className={"flex h-full"}>
             <Head>
-                <title>Messaging platform - Nuntius</title>
+                <title>{t("title")}</title>
                 <link rel="icon" href="/cm.svg"/>
             </Head>
             <Sidebar
@@ -162,8 +173,7 @@ export default function Home() {
                     <div className={"flex flex-col"}>
                         <Image src={"/no-msg.png"} alt={"Logo"} width={450} height={400}/>
                         <span
-                            className={"font-bold dark:text-white text-black text-base text-center"}>You have not selected any message</span>
-                        <span className={"text-base dark:text-gray-400 text-center"}>Choose one from your existing messages</span>
+                            className={"font-bold dark:text-white text-black text-base text-center"}>{t("nothing-to-show")}</span>
                     </div>
                 </div>
             }

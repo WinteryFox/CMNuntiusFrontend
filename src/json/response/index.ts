@@ -25,9 +25,9 @@ export interface MtCreateResponse {
     messages: Array<MessageCreateResponse>
 }
 
-export function formatDate(date: Date): string {
+export function formatDate(locale: string, date: Date): string {
     if (date.getUTCDate() == new Date().getUTCDate())
-        return date.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})
+        return date.toLocaleTimeString(locale, {hour: '2-digit', minute: '2-digit'})
     else
-        return date.toLocaleDateString([], {hour: '2-digit', minute: '2-digit'})
+        return date.toLocaleDateString(locale, {hour: '2-digit', minute: '2-digit'})
 }

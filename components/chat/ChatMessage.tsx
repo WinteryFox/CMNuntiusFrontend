@@ -5,12 +5,15 @@ import Image from "next/image"
 import {Message, To} from "../../src/json/message";
 import filterProfanity from "../../src/profanityfilter";
 import Markdown from "../Markdown";
+import {useTranslation} from "next-i18next";
 
 export default function ChatMessage(props: {
     message: Message,
     us: To,
     profanityFilterActive: boolean,
 }) {
+    const {i18n, t} = useTranslation()
+
     function getAttachmentUrl(): string {
         if (!props.message.content.media)
             return ""
@@ -77,23 +80,23 @@ export default function ChatMessage(props: {
                         </div>
                     </div>
                     <time dateTime={props.message.time.toISOString()} className="time flex flex-shrink-0">
-                        {formatDate(props.message.time)}
+                        {formatDate(i18n.language, props.message.time)}
                     </time>
                 </div> :
                 <div className={"flex mt-0.5 items-center justify-end dark:text-white"}>
                     <time dateTime={props.message.time.toISOString()} className={"mr-2"}>
-                        {formatDate(props.message.time)}
+                        {formatDate(i18n.language, props.message.time)}
                     </time>
                     {props.message.status == 0 &&
-                        <i className={"fas fa-spinner animate-spin w-16px"} title={"Accepted"}/>}
+                        <i className={"fas fa-spinner animate-spin w-16px"} title={t("accepted")}/>}
                     {props.message.status == 1 &&
-                        <i className={"fas fa-times text-red-400"} title={"Rejected"}/>}
+                        <i className={"fas fa-times text-red-400"} title={t("rejected")}/>}
                     {props.message.status == 2 &&
-                        <i className={"fas fa-check"} title={"Sent"}/>}
+                        <i className={"fas fa-check"} title={t("sent")}/>}
                     {props.message.status == 3 &&
-                        <i className={"fas fa-times-circle text-red-400"} title={"Failed"}/>}
+                        <i className={"fas fa-times-circle text-red-400"} title={t("failed")}/>}
                     {props.message.status == 4 &&
-                        <i className={"fas fa-check text-blue-400"} title={"Read"}/>}
+                        <i className={"fas fa-check text-blue-400"} title={t("read")}/>}
                 </div>
             }
         </div>

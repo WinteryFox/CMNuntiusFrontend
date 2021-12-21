@@ -1,0 +1,17 @@
+{
+  "title": "メッセージプラットフォーム - Nuntius",
+  "dashboard": "ダッシュボード",
+  "chats": "トーク",
+  "nothing-to-show": "トーク選択しておりません",
+  "filters": "フィルター",
+  "profanity-filter": "安全フィルター",
+  "channels": "チャンネル",
+  "search-conversations": "{{count}}個トークを探索",
+  "no-conversations": "トークがおりません",
+  "message-someone": "{{name}}へメッセージを送信",
+  "accepted": "了解済み",
+  "rejected": "不合格",
+  "sent": "未読",
+  "failed": "失敗",
+  "read": "既読"
+}

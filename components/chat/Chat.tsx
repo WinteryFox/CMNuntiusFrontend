@@ -5,6 +5,7 @@ import {From, Message, To} from "../../src/json/message";
 import {MessageCreateRequest} from "../../src/json/request";
 import ChatMessage from "./ChatMessage";
 import Input from "../Input";
+import {useTranslation} from "next-i18next";
 
 // TODO: remove cm context menu components
 
@@ -16,6 +17,7 @@ export default function Chat(props: {
     onMtCreate: (content: MessageCreateRequest) => void,
     profanityFilterActive: boolean
 }) {
+    const {t} = useTranslation()
     const chatEnd = createRef<HTMLDivElement>()
     const [input, setInput] = useState<string>("")
     const [isSending, setSending] = useState<boolean>(false)
@@ -69,7 +71,7 @@ export default function Chat(props: {
                 className="flex w-full justify-center px-10 py-5 border-t border-gray-200 dark:border-gray-700 dark:bg-black">
                 <Input
                     className={"dark:bg-black border border-gray-300 dark:border-gray-700 focus:border-blue-500 dark:text-white w-full rounded-3xl px-5 mr-5"}
-                    type={"text"} placeholder={`Message ${props.them.name ? props.them.name : props.them.number}`}
+                    type={"text"} placeholder={t("message-someone", {name: props.them.name ? props.them.name : props.them.number})}
                     id={"input"} value={input} onChange={(e) => setInput(e.target.value)}
                     onEnter={() => sendMessage()}/>
 
