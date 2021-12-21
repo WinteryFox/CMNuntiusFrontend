@@ -17,11 +17,11 @@ export default function Conversation(props: {
     filterProfanity: boolean,
     onSelect: (id: string) => void
 }) {
-    const {i18n} = useTranslation()
+    const {i18n, t} = useTranslation()
 
     function renderContent(): string {
         if (props.content.trim().length === 0) {
-            return "Sent an attachment."
+            return t("sent-an-attachment")
         } else {
             if (props.filterProfanity) {
                 return filterProfanity(props.content, false)

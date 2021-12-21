@@ -13,5 +13,6 @@
   "rejected": "Rejected",
   "sent": "Sent",
   "failed": "Failed",
-  "read": "Read"
+  "read": "Read",
+  "sent-an-attachment": "Sent an attachment."
 }

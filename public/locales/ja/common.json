@@ -13,5 +13,6 @@
   "rejected": "不合格",
   "sent": "未読",
   "failed": "失敗",
-  "read": "既読"
+  "read": "既読",
+  "sent-an-attachment": "ファイルを送信しました"
 }
